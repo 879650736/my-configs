@@ -220,6 +220,11 @@ add_to_path() {
     echo "Current directory ($PWD) added to PATH."
 }
 
+# Function to run the update-configs.sh script
+update_configs() {
+    ~/my-configs/update-configs.sh
+}
+
 
 list_defined_functions() {
     echo "以下是已定义的函数："
@@ -231,6 +236,7 @@ list_defined_functions() {
     echo "unset_proxy: 取消 HTTP 和 HTTPS 代理。"
     echo "check_and_kill_port: 检查指定端口的占用情况，并根据用户输入终止相应的进程。"
     echo "add_to_path:将pwd的目录放入环境变量里"
+    echo "update_configs:在github里更新my_configs"
 
     # 提示用户是否要列出所有函数名
     echo "是否要列出所有定义的函数名称？（输入 't' 或 'T' 来执行，其他键跳过）："
