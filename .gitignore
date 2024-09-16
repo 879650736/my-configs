@@ -1,0 +1,4 @@
+echo "*" > .gitignore
+echo "!/.bashrc" >> .gitignore
+echo "!/.vimrc" >> .gitignore
+
