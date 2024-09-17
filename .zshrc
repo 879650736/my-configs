@@ -18,6 +18,8 @@ plugins=(
   common-aliases
   zsh-syntax-highlighting
   history-substring-search
+  zsh-autosuggestions
+  zsh-history-substring-search
 )
 
 # 加载 Oh My Zsh
@@ -38,3 +40,4 @@ source $ZSH/oh-my-zsh.sh
 # 设置语言环境
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
