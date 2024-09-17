@@ -2,7 +2,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # 设置主题
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
+
+#取消显示DEFAULT_USER
+export DEFAULT_USER="ssy"
+
+#更改agnoster主题
+alias vtheme='v ~/.oh-my-zsh/themes/agnoster.zsh-theme'
 
 # 启用插件
 plugins=(

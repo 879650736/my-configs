@@ -1,70 +1,48 @@
+" 设置 leader 键为空格
 let mapleader = " "
-" Comments in Vimscript start with a `"`.
 
-" If you open this file in Vim, it'll be syntax highlighted for you.
-
-" Vim is based on Vi. Setting `nocompatible` switches from the default
-" Vi-compatibility mode and enables useful Vim functionality. This
-" configuration option turns out not to be necessary for the file named
-" '~/.vimrc', because Vim automatically enters nocompatible mode if that file
-" is present. But we're including it here just in case this config file is
-" loaded some other way (e.g. saved as `foo`, and then Vim started with
-" `vim -u foo`).
+" 禁用 Vi 兼容模式，启用增强的 Vim 功能
 set nocompatible
 
-" Turn on syntax highlighting.
+" 启用语法高亮。
 syntax on
 
-" Disable the default Vim startup message.
+" 抑制启动消息。
 set shortmess+=I
 
-" Show line numbers.
+" 显示行号。
 set number
 
-" This enables relative line numbering mode. With both number and
-" relativenumber enabled, the current line shows the true line number, while
-" all other lines (above and below) are numbered relative to the current line.
-" This is useful because you can tell, at a glance, what count is needed to
-" jump up or down to a particular line, by {count}k to go up or {count}j to go
-" down.
+" 显示相对行号，相对于当前行。
 set relativenumber
 
-" Always show the status line at the bottom, even if you only have one window open.
+" 始终显示状态栏。
 set laststatus=2
 
-" The backspace key has slightly unintuitive behavior by default. For example,
-" by default, you can't backspace before the insertion point set with 'i'.
-" This configuration makes backspace behave more reasonably, in that you can
-" backspace over anything.
+" 使退格键行为更直观。
 set backspace=indent,eol,start
 
-" By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
-" shown in any window) that has unsaved changes. This is to prevent you from "
-" forgetting about unsaved changes and then quitting e.g. via `:qa!`. We find
-" hidden buffers helpful enough to disable this protection. See `:help hidden`
-" for more information on this.
+" 允许隐藏有未保存更改的缓冲区。
 set hidden
 
-" This setting makes search case-insensitive when all characters in the string
-" being searched are lowercase. However, the search becomes case-sensitive if
-" it contains any capital letters. This makes searching more convenient.
+" 搜索默认不区分大小写。
+" 如果搜索模式中包含大写字母，则搜索变为区分大小写。
 set ignorecase
 set smartcase
 
-" Enable searching as you type, rather than waiting till you press enter.
+" 启用增量搜索，边输入边搜索。
 set incsearch
 
-" Unbind some useless/annoying default key bindings.
-nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
+" 禁用正常模式下的 'Q' 键（默认进入 Ex 模式）。
+nmap Q <Nop> 
 
-" Disable audible bell because it's annoying.
+" 禁用响铃提示。
 set noerrorbells visualbell t_vb=
 
-" Enable mouse support. You should avoid relying on this too much, but it can
-" sometimes be convenient.
+" 启用鼠标支持。
 set mouse+=a
 
-
+" ctrlp插件
 set runtimepath^=~/.vim/pack/vendor/start/ctrlp.vim
 
 " Change the default mapping and the default command to invoke CtrlP:
@@ -75,7 +53,8 @@ let g:ctrlp_cmd = 'CtrlP'
 
 let g:ctrlp_working_path_mode = 'ra'
 
- " Begin the plugin section
+" 使用 vim-plug 来管理插件
+" Begin the plugin section
 call plug#begin()
 
 " List the plugins you want to install
@@ -87,7 +66,7 @@ Plug 'neomake/neomake'
 " End the plugin section
 call plug#end()
 
-" Optionally, you can add additional configuration for your plugins here
+" 自定义键映射:
 
 nnoremap <leader>w :wq<CR>
 nnoremap <leader>q :q<CR>
