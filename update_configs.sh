@@ -9,7 +9,7 @@ ALIASES_FILE=~/.aliases
 FUNCTIONS_FILE=~/.shell/functions.sh
 ZSH_SETTINGS_FILE=~/.zsh/settings.zsh
 BASH_SETTINGS_FILE=~/.shell/setting.sh
-ENV_VARS_FILE=~/.env_vars.sh
+ENV_VARS_FILE=~/env_vars.sh
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 COMMIT_MESSAGE="Update configuration files at $DATE"
@@ -25,7 +25,7 @@ cp "$ALIASES_FILE" . || { echo "Failed to copy directory to .aliases"; }
 cp "$FUNCTIONS_FILE" . || { echo "Failed to copy directory to functions.sh"; }
 cp "$ZSH_SETTINGS_FILE" . || { echo "Failed to copy directory to settings.zsh"; }
 cp "$BASH_SETTINGS_FILE" . || { echo "Failed to copy directory to setting.sh"; }
-cp "$ENV_VARS_FILE" . || { echo "Failed to copy directory to .env_vars.sh"; }
+cp "$ENV_VARS_FILE" . || { echo "Failed to copy directory to  env_vars.sh"; }
 
 # 添加更改到 Git
 git add . || { echo "Failed to add changes to git"; exit 1; }
