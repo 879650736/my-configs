@@ -1,0 +1,111 @@
+# enable color support of ls and also add handy aliases
+if [[ -x /usr/bin/dircolors ]]; then
+    if [[ -r ~/.dircolors ]]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='exa -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# 创建常用命令的缩写
+alias ll="exa -lh"
+alias ..='cd ..'
+alias path='echo $PATH | tr ":" "\n" | awk '\''{
+    colors[1]="\033[31m"; # Red
+    colors[2]="\033[32m"; # Green
+    colors[3]="\033[33m"; # Yellow
+    colors[4]="\033[34m"; # Blue
+    colors[5]="\033[35m"; # Magenta
+    colors[6]="\033[36m"; # Cyan
+    colors[7]="\033[37m"; # White
+    print colors[(NR % 7) + 1] $0 "\033[0m"
+}'\'
+
+# 能够少输入很多
+alias gs="git status"
+alias gc="git commit"
+alias ga="git add ./"
+alias gl="git log --all --graph --decorate"
+alias gb="git branch"
+alias gch="git checkout"
+alias v="vim"
+alias br='broot'
+alias cl='clear'
+
+# 手误打错命令也没关系
+alias sl=ls
+alias dc=cd
+alias code.='code .'
+
+# 重新定义一些命令行的默认行为
+alias mv="mv -i"           # -i prompts before overwrite
+alias mkdir="mkdir -p"     # -p make parent dirs as needed
+alias df="df -h"           # -h prints human readable format
+
+# 更新tmux conf
+alias vtmux="v ~/.tmux.conf"
+alias tmuxupdate="tmux source-file ~/.tmux.conf"
+
+# 更新bashrc
+alias vbash="v ~/.bashrc"
+alias bashupdate="source ~/.bashrc"
+
+# 更新zshrc
+alias vzsh="v ~/.zshrc"
+alias zshupdate="source ~/.zshrc"
+
+# 更新vimrc
+alias vvim="v ~/.vimrc"
+alias vimupdate="source ~/.vimrc"
+
+#更新docker
+alias vdocker='v /etc/apt/sources.list.d/docker.list'
+
+#更新gitconfig
+alias vgit="v ~/.gitconfig"
+
+#更新Ubuntu
+alias update='sudo apt update -y'
+alias upgrade='sudo apt upgrade -y'
+
+#打开docker
+alias dockerstart='sudo service docker start'
+alias dockerrestart='sudo service docker restart'
+alias dockerstop='sudo service docker stop'
+alias dockerls='docker images'
+alias compiler='docker run -it --rm -v /home/ssy/compiler:/root/compiler maxxing/compiler-dev bash'
+
+#curl
+alias curlg='curl google.com'
+alias curlb='curl baidu.com' 
+
+#更改ctags默认行为
+alias ctags='ctags -R .'
+alias lstags='exa -l tags'
+
+#更改updatedb默认行为
+alias updatedb='sudo updatedb'
+
+#搜索下载软件
+alias search_spark='aptss search --full --names-only'
+alias install_spark='sudo aptss install'
+
+#改docker环境
+alias docker_service='cd /etc/systemd/system/docker.service.d'
