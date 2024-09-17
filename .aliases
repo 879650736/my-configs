@@ -66,10 +66,21 @@ alias tmuxupdate="tmux source-file ~/.tmux.conf"
 # 更新bashrc
 alias vbash="v ~/.bashrc"
 alias bashupdate="source ~/.bashrc"
+alias bashsetting='v ~/.shell/setting.sh'
 
 # 更新zshrc
 alias vzsh="v ~/.zshrc"
 alias zshupdate="source ~/.zshrc"
+alias zshsetting='v ~/.zsh/settings.zsh'
+
+#更新别名
+alias valias="v ~/.aliases"
+
+#更新函数
+alias vfunction="v ~/.shell/functions.sh"
+
+#更新环境变量
+alias venv="v ~/.env_vars.sh"
 
 # 更新vimrc
 alias vvim="v ~/.vimrc"

@@ -102,7 +102,7 @@ add_to_path() {
 
 # Function to run the update-configs.sh script
 update_configs() {
-    ~/my-configs/update-configs.sh
+    ~/my_configs/update_configs.sh
 }
 
 # 定义 mkcd 函数
