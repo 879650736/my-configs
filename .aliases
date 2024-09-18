@@ -123,3 +123,4 @@ alias docker_service='cd /etc/systemd/system/docker.service.d'
 
 #进入ssh目录
 alias cdssh='cd /home/ssy/.ssh'
+
