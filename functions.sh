@@ -110,6 +110,30 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
+
+update_git_remote_pwd() {
+    REPO_DIR=$(pwd)
+
+    DATE=$(date +"%Y-%m-%d %H:%M:%S")
+    COMMIT_MESSAGE="Update compiler files at $DATE"
+
+    # 切换到目标目录
+    cd "$REPO_DIR" || { echo "Failed to change directory to $REPO_DIR"; return 1; }
+
+    # 添加更改到 Git
+    git add * || { echo "Failed to add changes to git"; return 1; }
+
+    # 提交更改
+    git commit -m "$COMMIT_MESSAGE" || { echo "Failed to commit changes"; return 1; }
+
+    # 推送更改到远程仓库
+    git push -u origin master || { echo "Failed to push changes to remote repository"; return 1; }
+
+    echo "Update completed successfully."
+}
+
+
+
 list_defined_functions() {
     echo "以下是已定义的函数："
 
@@ -122,6 +146,7 @@ list_defined_functions() {
     echo "add_to_path:将pwd的目录放入环境变量里"
     echo "update_configs:在github里更新my_configs"
     echo "mkcd:建立并进入文件夹"
+    echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
 
     # 提示用户是否要列出所有函数名
     echo "是否要列出所有定义的函数名称？（输入 't' 或 'T' 来执行，其他键跳过）："
@@ -134,3 +159,4 @@ list_defined_functions() {
         echo "跳过列出所有函数名称。"
     fi
 }
+
