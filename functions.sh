@@ -132,6 +132,11 @@ update_git_remote_pwd() {
     echo "Update completed successfully."
 }
 
+link_to_desktop() {
+    local dir_name=$(basename "$PWD")
+    ln -s "$PWD" ~/"Desktop/$dir_name" || { echo "Failed to create symlink on Desktop"; return 1; }
+    echo "Shortcut to $dir_name created on Desktop."
+}
 
 
 list_defined_functions() {
@@ -147,6 +152,7 @@ list_defined_functions() {
     echo "update_configs:在github里更新my_configs"
     echo "mkcd:建立并进入文件夹"
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
+    echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
 
     # 提示用户是否要列出所有函数名
     echo "是否要列出所有定义的函数名称？（输入 't' 或 'T' 来执行，其他键跳过）："
