@@ -2,10 +2,10 @@
 source "$HOME/.cargo/env"
 
 # 注意 $HOME 是 Linux 自动设置的表示你家目录的环境变量，你也可以根据实际位置灵活调整
-export PATH="$HOME/os-env/qemu-7.0.0/build/:$PATH"
-export PATH="$HOME/os-env/qemu-7.0.0/build/riscv64-softmmu:$PATH"
-export PATH="$HOME/os-env/qemu-7.0.0/build/riscv64-linux-user:$PATH"
-export PATH="$HOME/gnu/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/:$PATH"
+export PATH="$HOME/os_env/qemu-7.0.0/build/:$PATH"
+export PATH="$HOME/os_env/qemu-7.0.0/build/riscv64-softmmu:$PATH"
+export PATH="$HOME/os_env/qemu-7.0.0/build/riscv64-linux-user:$PATH"
+export PATH="$HOME/os_env/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/:$PATH"
 
 # 添加 Android Studio 的二进制目录到 PATH
 export PATH=$PATH:/home/ssy/android_studio/android-studio-2024.1.2.12-linux/android-studio/bin
