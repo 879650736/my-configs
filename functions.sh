@@ -134,8 +134,20 @@ update_git_remote_pwd() {
 
 link_to_desktop() {
     local dir_name=$(basename "$PWD")
-    ln -s "$PWD" ~/"Desktop/$dir_name" || { echo "Failed to create symlink on Desktop"; return 1; }
-    echo "Shortcut to $dir_name created on Desktop."
+    local desktop_file=~/"Desktop/$dir_name.desktop"
+
+    # 创建 .desktop 文件
+    echo "[Desktop Entry]" > "$desktop_file"
+    echo "Name=$dir_name" >> "$desktop_file"
+    echo "Comment=Shortcut to the $dir_name directory" >> "$desktop_file"
+    echo "Exec=nautilus $PWD" >> "$desktop_file"
+    echo "Icon=folder" >> "$desktop_file"
+    echo "Terminal=false" >> "$desktop_file"
+    echo "Type=Application" >> "$desktop_file"
+
+    chmod +x "$desktop_file"
+
+    echo "Shortcut $desktop_file created."
 }
 
 
