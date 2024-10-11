@@ -150,6 +150,51 @@ link_to_desktop() {
     echo "Shortcut $desktop_file created."
 }
 
+# 列出所有进程并查看指定 PID 的 maps 信息
+function list_and_view_maps() {
+    # 列出所有进程及其 PID
+    echo "Listing all processes:"
+    ps -eo pid,comm --sort=pid  # 列出 PID 和命令，按 PID 排序
+    echo  # 添加空行以便更清晰
+
+    # 提示用户输入 PID
+    echo -n "Enter the PID you want to view maps for: "
+    read pid  # 等待用户输入 PID
+
+    # 检查进程是否存在
+    if ! kill -0 "$pid" 2>/dev/null; then
+        echo "Process with PID $pid does not exist."
+        return 1
+    fi
+
+    # 输出 maps 信息
+    echo "Memory maps for PID $pid:"
+    cat "/proc/$pid/maps"
+}
+
+# 列出所有进程并查看指定 PID 的 maps 信息
+function list_and_view_maps() {
+    # 列出所有进程及其 PID
+    echo "Listing all processes:"
+    ps -eo pid,comm --sort=pid  # 列出 PID 和命令，按 PID 排序
+    echo  # 添加空行以便更清晰
+
+    # 提示用户输入 PID
+    echo -n "Enter the PID you want to view maps for: "
+    read pid  # 等待用户输入 PID
+
+    # 检查进程是否存在
+    if ! kill -0 "$pid" 2>/dev/null; then
+        echo "Process with PID $pid does not exist."
+        return 1
+    fi
+
+    # 输出 maps 信息
+    echo "Memory maps for PID $pid:"
+    cat "/proc/$pid/maps"
+}
+
+
 
 list_defined_functions() {
     echo "以下是已定义的函数："
@@ -165,6 +210,7 @@ list_defined_functions() {
     echo "mkcd:建立并进入文件夹"
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
     echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
+    echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
 
 }
 
