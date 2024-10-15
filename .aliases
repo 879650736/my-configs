@@ -126,3 +126,5 @@ alias cdssh='cd /home/ssy/.ssh'
 #修改code的默认行为
 alias code='code .'
 
+#修改grep的默认行为
+alias grep='grep -rni'
