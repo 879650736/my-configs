@@ -114,8 +114,8 @@ alias lstags='exa -l tags'
 alias updatedb='sudo updatedb'
 
 #搜索下载软件
-alias search_spark='aptss search --full --names-only'
-alias install_spark='sudo aptss install'
+alias spark_search='sudo aptss search --full --names-only'
+alias spark_install='sudo aptss install'
 
 #改docker环境
 alias docker_service='cd /etc/systemd/system/docker.service.d'
@@ -127,4 +127,11 @@ alias cdssh='cd /home/ssy/.ssh'
 alias code='code .'
 
 #修改grep的默认行为
-alias grep='grep -rni'
+alias grepf='grep -rni'
+
+#打开mysql
+alias mysqlstart='sudo systemctl start mysql'
+alias mysqlrestar='sudo systemctl restart mysql'
+alias mysqlstop='sudo systemctl stop mysql'
+alias mysqlstatus='sudo systemctl status mysql'
+alias mysqlenter='sudo mysql -u root -p'

@@ -27,3 +27,11 @@ source /home/ssy/.config/broot/launcher/bash/br
 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
 
+# Java 环境变量
+export JAVA_HOME='/opt/jdk-13.0.1'
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Maven 环境变量
+export M2_HOME='/opt/apache-maven-3.9.9'
+export PATH="$M2_HOME/bin:$PATH"
+
