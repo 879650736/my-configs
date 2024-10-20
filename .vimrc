@@ -112,3 +112,7 @@ set foldcolumn=2
 
 " 打开文件时自动折叠所有内容
 autocmd BufReadPost,FileReadPost * normal zM
+
+" 支持系统剪贴板
+set clipboard=unnamedplus
+
