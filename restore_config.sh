@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义变量
-REPO_DIR=~/my_configs
+REPO_DIR=~/my-configs
 VIMRC_FILE=~/.vimrc
 BASHRC_FILE=~/.bashrc
 ZSHRC_FILE=~/.zshrc
