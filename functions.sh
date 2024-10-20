@@ -195,6 +195,14 @@ function list_and_view_maps() {
 }
 
 
+# 定义变量
+SSH="ubuntu@170.106.189.30"
+
+# 连接到远程服务器的函数
+ssh_connect() {
+    ssh "$SSH"
+}
+
 
 list_defined_functions() {
     echo "以下是已定义的函数："
@@ -211,6 +219,8 @@ list_defined_functions() {
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
     echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
     echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
+    echo  "ssh_connect:链接到远程服务器"
+
 
 }
 

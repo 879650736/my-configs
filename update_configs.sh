@@ -9,7 +9,7 @@ ALIASES_FILE=~/.aliases
 FUNCTIONS_FILE=~/.shell/functions.sh
 ZSH_SETTINGS_FILE=~/.zsh/settings.zsh
 BASH_SETTINGS_FILE=~/.shell/setting.sh
-ENV_VARS_FILE=~/env_vars.sh
+ENV_VARS_FILE=~/.env_vars
 AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")

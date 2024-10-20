@@ -35,7 +35,7 @@ source $ZSH/oh-my-zsh.sh
 [[ -f "$HOME/.zsh/settings.zsh" ]] && source "$HOME/.zsh/settings.zsh"
 
 # 加载环境变量
-[[ -f "$HOME/env_vars.sh" ]] && source "$HOME/env_vars.sh"
+[[ -f "$HOME/.env_vars" ]] && source "$HOME/.env_vars"
 
 # 设置语言环境
 export LANG=en_US.UTF-8

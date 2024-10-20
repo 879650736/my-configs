@@ -4,5 +4,5 @@
 
 [[ -f $HOME/.shell/setting.sh ]] && source $HOME/.shell/setting.sh
 
-[[ -f $HOME/.env_vars.sh ]] && source $HOME/env_vars.sh
+[[ -f $HOME/.env_vars]] && source $HOME/.env_vars
 . "$HOME/.cargo/env"

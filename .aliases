@@ -79,7 +79,7 @@ alias valias="v ~/.aliases"
 alias vfunction="v ~/.shell/functions.sh"
 
 #更新环境变量
-alias venv="v ~/env_vars.sh"
+alias venv="v ~/.env_vars"
 
 # 更新vimrc
 alias vvim="v ~/.vimrc"
