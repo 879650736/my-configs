@@ -21,9 +21,20 @@ echo "Restore started at $DATE"
 # 切换到备份目录
 cd "$REPO_DIR" || { echo "Failed to change directory to $REPO_DIR"; exit 1; }
 
-#创建文件夹
-mkdir ~/.zsh && echo "mkdir .zsh"|| echo "Failed to mkdir .zsh"
-mkdir ~/.shell && echo "mkdir .shell"|| echo "Failed to mkdir .shell"
+# 检查并创建 ~/.zsh 目录
+if [ ! -d "$HOME/.zsh" ]; then
+    mkdir -p ~/.zsh && echo "mkdir .zsh" || echo "Failed to mkdir .zsh"
+else
+    echo "~/.zsh already exists"
+fi
+
+# 检查并创建 ~/.shell 目录
+if [ ! -d "$HOME/.shell" ]; then
+    mkdir -p ~/.shell && echo "mkdir .shell" || echo "Failed to mkdir .shell"
+else
+    echo "~/.shell already exists"
+fi
+
 
 # 复制配置文件回正确位置
 cp -f .vimrc "$VIMRC_FILE" && echo "Restored .vimrc"|| echo "Failed to restore .vimrc"

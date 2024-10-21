@@ -6,3 +6,5 @@
 
 [[ -f $HOME/.env_vars]] && source $HOME/.env_vars
 . "$HOME/.cargo/env"
+
+eval "$(fnm env --multi 2>& /dev/null)"
