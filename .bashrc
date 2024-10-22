@@ -4,7 +4,5 @@
 
 [[ -f $HOME/.shell/setting.sh ]] && source $HOME/.shell/setting.sh
 
-[[ -f $HOME/.env_vars]] && source $HOME/.env_vars
-. "$HOME/.cargo/env"
+[[ -f $HOME/.env_vars ]] && source $HOME/.env_vars
 
-eval "$(fnm env --multi 2>& /dev/null)"
