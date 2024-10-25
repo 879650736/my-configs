@@ -173,7 +173,7 @@ function list_and_view_maps() {
 }
 
 # 列出所有进程并查看指定 PID 的 maps 信息
-function list_and_view_maps() {
+list_and_view_maps() {
     # 列出所有进程及其 PID
     echo "Listing all processes:"
     ps -eo pid,comm --sort=pid  # 列出 PID 和命令，按 PID 排序
@@ -203,6 +203,41 @@ ssh_connect() {
     ssh "$SSH"
 }
 
+sync_to_remote() {
+    local src_file="$1"
+    if [ -z "$src_file" ]; then
+        echo "请提供要传输的文件路径。"
+        return 1
+    fi
+    rsync -avz "$src_file" "$SSH:~/"
+}
+
+extract() {
+    local file="$1"
+    if [ -z "$file" ]; then
+        echo "请提供要解压的文件路径。"
+        return 1
+    fi
+
+    if [ ! -f "$file" ]; then
+        echo "文件不存在：$file"
+        return 1
+    fi
+
+    case "$file" in
+        *.tar.gz | *.tgz) tar -xvzf "$file" ;;
+        *.tar.bz2) tar -xvjf "$file" ;;
+        *.tar.xz) tar -xvJf "$file" ;;
+        *.tar) tar -xvf "$file" ;;
+        *.gz) gunzip "$file" ;;
+        *.zip) unzip "$file" ;;
+        *.bz2) bunzip2 "$file" ;;
+        *.xz) unxz "$file" ;;
+        *) echo "不支持的文件格式：$file" ;;
+    esac
+}
+
+
 
 list_defined_functions() {
     echo "以下是已定义的函数："
@@ -219,8 +254,9 @@ list_defined_functions() {
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
     echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
     echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
-    echo  "ssh_connect:链接到远程服务器"
-
+    echo "ssh_connect:链接到远程服务器"
+    echo "sync_to_remote:上传文件至远程服务器"
+    echo "extract:解压文件"
 
 }
 
