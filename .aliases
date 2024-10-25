@@ -124,7 +124,7 @@ alias docker_service='cd /etc/systemd/system/docker.service.d'
 alias cdssh='cd /home/ssy/.ssh'
 
 #修改code的默认行为
-alias code='code .'
+alias code.='code .'
 
 #修改grep的默认行为
 alias grepf='grep -rni'
