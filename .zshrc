@@ -5,7 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 
 #取消显示DEFAULT_USER
-export DEFAULT_USER="ssy"
+export DEFAULT_USER="$USER"
 
 #更改agnoster主题
 alias vtheme='v ~/.oh-my-zsh/themes/agnoster.zsh-theme'
