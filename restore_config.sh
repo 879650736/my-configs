@@ -10,6 +10,7 @@ FUNCTIONS_FILE=~/.shell/functions.sh
 ZSH_SETTINGS_FILE=~/.zsh/settings.zsh
 BASH_SETTINGS_FILE=~/.shell/setting.sh
 ENV_VARS_FILE=~/.env_vars
+TMUX_FILE=~/.tmux.conf
 AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
@@ -45,6 +46,7 @@ cp -f functions.sh "$FUNCTIONS_FILE" && echo "Restored functions.sh" || echo "Fa
 cp -f settings.zsh "$ZSH_SETTINGS_FILE" && echo "Restored settings.zsh" || echo "Failed to restore settings.zsh"
 cp -f setting.sh "$BASH_SETTINGS_FILE" && echo "Restored setting.sh" || echo "Failed to restore setting.sh"
 cp -f .env_vars "$ENV_VARS_FILE" && echo "Restored env_vars.sh" || echo "Failed to restore .env_vars"
+cp -f .tmux.conf "$TMUX_FILE" && echo "Restored env_vars.sh" || echo "Failed to restore .tmux.conf"
 cp -f agnoster.zsh-theme "$AGNOSTER_THEME_FILE" && echo "Restored agnoster.zsh-theme" || echo "Failed to restore agnoster.zsh-theme"
 
 # 记录完成时间
