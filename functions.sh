@@ -51,9 +51,10 @@ cleanup_apt_locks() {
 }
 
 set_proxy() {
-    export http_proxy="http://127.0.0.1:12333"
-    export https_proxy="http://127.0.0.1:12333"
-    echo "HTTP 和 HTTPS 代理已设置为 http://127.0.0.1:12333"
+    export http_proxy="http://127.0.0.1:7897"
+    export https_proxy="http://127.0.0.1:7897"
+    export all_proxy="socks5://127.0.0.1:7897"
+    echo "HTTP HTTPS SOCKS5 代理已设置为 http://127.0.0.1:7897"
 }
 
 rd_set_proxy() {
@@ -68,7 +69,8 @@ rd_set_proxy() {
 unset_proxy() {
     unset http_proxy
     unset https_proxy
-    echo "HTTP 和 HTTPS 代理已取消"
+    unset all_proxy
+    echo "HTTP 和 HTTPS SOCKS5 代理已取消"
 }
 
 check_and_kill_port() {
