@@ -138,3 +138,4 @@ alias mysqlenter='sudo mysql -u root -p'
 #管理桌面
 alias tweaks="gnome-tweaks"
 alias restart_kde="systemctl --user restart plasma-plasmashell.service"
+alias new_kde="systemd-run --user plasmashell --replace"

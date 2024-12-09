@@ -142,7 +142,7 @@ link_to_desktop() {
     echo "[Desktop Entry]" > "$desktop_file"
     echo "Name=$dir_name" >> "$desktop_file"
     echo "Comment=Shortcut to the $dir_name directory" >> "$desktop_file"
-    echo "Exec=nautilus $PWD" >> "$desktop_file"
+    echo "Exec=dolphin $PWD" >> "$desktop_file"
     echo "Icon=folder" >> "$desktop_file"
     echo "Terminal=false" >> "$desktop_file"
     echo "Type=Application" >> "$desktop_file"
