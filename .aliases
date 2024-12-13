@@ -115,7 +115,7 @@ alias lstags='exa -l tags'
 alias updatedb='sudo updatedb'
 
 #搜索下载软件
-alias spark_search='sudo aptss search --full --names-only'
+alias spark_search='aptss search --full --names-only'
 alias spark_install='sudo aptss install'
 
 #改docker环境
