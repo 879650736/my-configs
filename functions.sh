@@ -198,12 +198,19 @@ list_and_view_maps() {
 
 
 # 定义变量
-SSH="ubuntu@170.106.189.30"
+SSH_TX="ubuntu@170.106.189.30"
+SSH_24="ssy@222.24.32.141"
 
 # 连接到远程服务器的函数
-ssh_connect() {
-    ssh "$SSH"
+ssh_connect_tx() {
+    ssh "$SSH_TX"
 }
+
+
+ssh_connect_24() {
+    ssh "$SSH_24"
+}
+
 
 sync_to_remote() {
     local src_file="$1"
@@ -265,7 +272,7 @@ list_defined_functions() {
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
     echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
     echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
-    echo "ssh_connect:链接到远程服务器"
+    echo "ssh_connect:链接到远程服务器,TX链接到腾讯服务器，24连接到虚拟机"
     echo "sync_to_remote:上传文件至远程服务器"
     echo "extract:解压文件"
     echo "aa_denied:查询被apparmor阻止的特定文件"
