@@ -239,6 +239,15 @@ extract() {
     esac
 }
 
+aa_denied() {
+  sudo dmesg | grep 'apparmor.*denied' | grep "$1"
+}
+
+hisgrep() {
+  history | grep "$1"
+}
+
+
 
 
 list_defined_functions() {
@@ -259,6 +268,8 @@ list_defined_functions() {
     echo "ssh_connect:链接到远程服务器"
     echo "sync_to_remote:上传文件至远程服务器"
     echo "extract:解压文件"
+    echo "aa_denied:查询被apparmor阻止的特定文件"
+    echo "hisgrep:在历史记录中grep文件"
 
 }
 
