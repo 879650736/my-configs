@@ -211,15 +211,39 @@ ssh_connect_24() {
     ssh "$SSH_24"
 }
 
-
 sync_to_remote() {
     local src_file="$1"
     if [ -z "$src_file" ]; then
-        echo "请提供要传输的文件路径。"
+        echo "\033[31m请提供要传输的文件路径。\033[0m"
         return 1
     fi
-    rsync -avz "$src_file" "$SSH:~/"
+
+    echo "请选择目标服务器:"
+    select target_ssh in "$SSH_TX" "$SSH_24"; do
+        case $target_ssh in
+            "$SSH_TX")
+                break
+                ;;
+            "$SSH_24")
+                break
+                ;;
+            *)
+                echo "\033[31m无效的选项，请选择 1 或 2。\033[0m"
+                continue
+                ;;
+        esac
+    done
+
+    echo "\033[32m正在将文件传输到 $target_ssh\033[0m"
+    rsync -avz "$src_file" "$target_ssh:~/"
+
+    if [ $? -eq 0 ]; then
+        echo "\033[32m文件传输成功。\033[0m"
+    else
+        echo "\033[31m文件传输失败。\033[0m"
+    fi
 }
+
 
 extract() {
     local file="$1"
