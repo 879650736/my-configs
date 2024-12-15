@@ -199,7 +199,7 @@ list_and_view_maps() {
 
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
-SSH_24="ssy@222.24.32.141"
+SSH_24="ssy@222.24.32.189"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
