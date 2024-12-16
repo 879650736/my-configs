@@ -199,7 +199,7 @@ list_and_view_maps() {
 
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
-SSH_24="ssy@222.24.32.189"
+SSH_24="ssy@192.168.122.171"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -209,6 +209,10 @@ ssh_connect_tx() {
 
 ssh_connect_24() {
     ssh "$SSH_24"
+}
+
+ssh_connect_24_tun() {
+    ssh "$SSH_24_tun"
 }
 
 sync_to_remote() {
