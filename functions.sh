@@ -200,19 +200,24 @@ list_and_view_maps() {
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
+SSH_GX="ssy@192.168.122.164"
+SSH_FE="ssy@192.168.122.183"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
-    ssh "$SSH_TX"
+    ssh -X "$SSH_TX"
 }
-
 
 ssh_connect_24() {
-    ssh "$SSH_24"
+    ssh -X "$SSH_24"
 }
 
-ssh_connect_24_tun() {
-    ssh "$SSH_24_tun"
+ssh_connect_gx() {
+    ssh -X "$SSH_GX"
+}
+
+ssh_connect_fe() {
+    ssh -X "$SSH_FE"
 }
 
 sync_to_remote() {
@@ -223,7 +228,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "$SSH_TX" "$SSH_24"; do
+    select target_ssh in "$SSH_TX" "$SSH_24" "$SSH_GX" "$SSH_FE"; do
         case $target_ssh in
             "$SSH_TX")
                 break
@@ -231,8 +236,14 @@ sync_to_remote() {
             "$SSH_24")
                 break
                 ;;
+            "$SSH_GX")
+                break
+                ;;
+            "$SSH_FE")
+                break
+                ;;
             *)
-                echo "\033[31m无效的选项，请选择 1 或 2。\033[0m"
+                echo "\033[31m无效的选项，请选择对应的数字（1-4）。\033[0m"
                 continue
                 ;;
         esac
