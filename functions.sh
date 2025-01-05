@@ -201,7 +201,7 @@ list_and_view_maps() {
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
 SSH_GX="ssy@192.168.122.164"
-SSH_FE="ssy@192.168.122.183"
+SSH_FE="ssy@192.168.122.140"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -228,18 +228,22 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "$SSH_TX" "$SSH_24" "$SSH_GX" "$SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_GX" "SSH_FE"; do
         case $target_ssh in
-            "$SSH_TX")
+            "SSH_TX")
+                target_ssh_value="$SSH_TX"
                 break
                 ;;
-            "$SSH_24")
+            "SSH_24")
+                target_ssh_value="$SSH_24"
                 break
                 ;;
-            "$SSH_GX")
+            "SSH_GX")
+                target_ssh_value="$SSH_GX"
                 break
                 ;;
-            "$SSH_FE")
+            "SSH_FE")
+                target_ssh_value="$SSH_FE"
                 break
                 ;;
             *)
@@ -249,8 +253,8 @@ sync_to_remote() {
         esac
     done
 
-    echo "\033[32m正在将文件传输到 $target_ssh\033[0m"
-    rsync -avz "$src_file" "$target_ssh:~/"
+    echo "\033[32m正在将文件传输到 $target_ssh_value\033[0m"
+    rsync -avz "$src_file" "$target_ssh_value:~/"
 
     if [ $? -eq 0 ]; then
         echo "\033[32m文件传输成功。\033[0m"
@@ -258,6 +262,7 @@ sync_to_remote() {
         echo "\033[31m文件传输失败。\033[0m"
     fi
 }
+
 
 
 extract() {

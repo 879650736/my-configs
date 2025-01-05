@@ -115,7 +115,7 @@ alias lstags='exa -l tags'
 alias updatedb='sudo updatedb'
 
 #搜索下载软件
-alias spark_search='aptss search --full --names-only'
+alias spark_search='sudo aptss search --full --names-only'
 alias spark_install='sudo aptss install'
 
 #改docker环境
@@ -145,3 +145,5 @@ alias start_mysql='sudo systemctl start mysql'
 #apt
 alias apt_removed='grep "remove" /var/log/apt/history.log | tail -n 10'
 
+#new_home
+alias new_home='cd /home/new_home'
