@@ -263,6 +263,48 @@ sync_to_remote() {
     fi
 }
 
+open_remote_folder_in_dolphin() {
+    # 如果未传入远程目录，默认使用根目录 "/"
+    local remote_dir="${1:-/}"
+
+    echo "请选择目标服务器:"
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_GX" "SSH_FE"; do
+        case $target_ssh in
+            "SSH_TX")
+                target_ssh_value="$SSH_TX"
+                break
+                ;;
+            "SSH_24")
+                target_ssh_value="$SSH_24"
+                break
+                ;;
+            "SSH_GX")
+                target_ssh_value="$SSH_GX"
+                break
+                ;;
+            "SSH_FE")
+                target_ssh_value="$SSH_FE"
+                break
+                ;;
+            *)
+                echo "\033[31m无效的选项，请选择对应的数字（1-4）。\033[0m"
+                continue
+                ;;
+        esac
+    done
+
+    echo "\033[32m正在通过 Dolphin 打开远程文件夹：$target_ssh_value:$remote_dir\033[0m"
+    
+    # 使用 Dolphin 打开远程文件夹
+    dolphin "sftp://$target_ssh_value$remote_dir"
+
+    if [ $? -eq 0 ]; then
+        echo "\033[32m已成功打开远程文件夹。\033[0m"
+    else
+        echo "\033[31m打开远程文件夹失败。\033[0m"
+    fi
+}
+
 
 
 extract() {
@@ -318,6 +360,7 @@ list_defined_functions() {
     echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
     echo "ssh_connect:链接到远程服务器,TX链接到腾讯服务器，24连接到虚拟机"
     echo "sync_to_remote:上传文件至远程服务器"
+    echo "open_remote_folder_in_dolphin:使用dolphin打开远程文件夹"
     echo "extract:解压文件"
     echo "aa_denied:查询被apparmor阻止的特定文件"
     echo "hisgrep:在历史记录中grep文件"
