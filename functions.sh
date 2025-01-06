@@ -200,6 +200,7 @@ list_and_view_maps() {
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
+SSH_20="ssy@192.168.122.7"
 SSH_GX="ssy@192.168.122.164"
 SSH_FE="ssy@192.168.122.140"
 
@@ -210,6 +211,10 @@ ssh_connect_tx() {
 
 ssh_connect_24() {
     ssh -X "$SSH_24"
+}
+
+ssh_connect_20() {
+    ssh -X "$SSH_20"
 }
 
 ssh_connect_gx() {
@@ -228,7 +233,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_GX" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_GX" "SSH_FE"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -238,6 +243,10 @@ sync_to_remote() {
                 target_ssh_value="$SSH_24"
                 break
                 ;;
+            "SSH_20")
+                target_ssh_value="$SSH_20"
+                break
+                ;; 
             "SSH_GX")
                 target_ssh_value="$SSH_GX"
                 break
@@ -247,7 +256,7 @@ sync_to_remote() {
                 break
                 ;;
             *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-4）。\033[0m"
+                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
                 continue
                 ;;
         esac
@@ -268,7 +277,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_GX" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_GX" "SSH_FE"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -276,6 +285,10 @@ open_remote_folder_in_dolphin() {
                 ;;
             "SSH_24")
                 target_ssh_value="$SSH_24"
+                break
+                ;;
+            "SSH_20")
+                target_ssh_value="$SSH_20"
                 break
                 ;;
             "SSH_GX")
@@ -287,7 +300,7 @@ open_remote_folder_in_dolphin() {
                 break
                 ;;
             *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-4）。\033[0m"
+                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
                 continue
                 ;;
         esac
