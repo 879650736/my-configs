@@ -201,7 +201,7 @@ list_and_view_maps() {
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
 SSH_20="ssy@192.168.122.7"
-SSH_GX="ssy@192.168.122.164"
+SSH_18="ssy@192.168.122.187"
 SSH_FE="ssy@192.168.122.140"
 
 # 连接到远程服务器的函数
@@ -217,8 +217,8 @@ ssh_connect_20() {
     ssh -X "$SSH_20"
 }
 
-ssh_connect_gx() {
-    ssh -X "$SSH_GX"
+ssh_connect_18() {
+    ssh -X "$SSH_18"
 }
 
 ssh_connect_fe() {
@@ -233,7 +233,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_GX" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -247,8 +247,8 @@ sync_to_remote() {
                 target_ssh_value="$SSH_20"
                 break
                 ;; 
-            "SSH_GX")
-                target_ssh_value="$SSH_GX"
+            "SSH_18")
+                target_ssh_value="$SSH_18"
                 break
                 ;;
             "SSH_FE")
@@ -277,7 +277,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_GX" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -291,8 +291,8 @@ open_remote_folder_in_dolphin() {
                 target_ssh_value="$SSH_20"
                 break
                 ;;
-            "SSH_GX")
-                target_ssh_value="$SSH_GX"
+            "SSH_18")
+                target_ssh_value="$SSH_18"
                 break
                 ;;
             "SSH_FE")
@@ -345,6 +345,57 @@ extract() {
     esac
 }
 
+compress_file() {
+    local file_to_compress="$1"
+    if [ -z "$file_to_compress" ]; then
+        echo "请输入要压缩的文件路径。"
+        return 1
+    fi
+
+    if [ ! -f "$file_to_compress" ]; then
+        echo "指定的文件不存在: $file_to_compress"
+        return 1
+    fi
+
+    local zip_filename="${file_to_compress}.zip"
+    echo "正在压缩文件: $file_to_compress 到 $zip_filename"
+
+    zip "$zip_filename" "$file_to_compress"
+
+    if [ $? -eq 0 ]; then
+        echo "文件压缩成功: $zip_filename"
+    else
+        echo "文件压缩失败。"
+    fi
+}
+
+
+compress_directory() {
+    local dir_to_compress="$1"
+    if [ -z "$dir_to_compress" ]; then
+        echo "请输入要压缩的文件夹路径。"
+        return 1
+    fi
+
+    if [ ! -d "$dir_to_compress" ]; then
+        echo "指定的文件夹不存在: $dir_to_compress"
+        return 1
+    fi
+
+    local zip_filename="${dir_to_compress}.zip"
+    echo "正在压缩文件夹: $dir_to_compress 到 $zip_filename"
+
+    zip -r "$zip_filename" "$dir_to_compress"
+
+    if [ $? -eq 0 ]; then
+        echo "文件夹压缩成功: $zip_filename"
+    else
+        echo "文件夹压缩失败。"
+    fi
+}
+
+
+
 aa_denied() {
   sudo dmesg | grep 'apparmor.*denied' | grep "$1"
 }
@@ -375,6 +426,8 @@ list_defined_functions() {
     echo "sync_to_remote:上传文件至远程服务器"
     echo "open_remote_folder_in_dolphin:使用dolphin打开远程文件夹"
     echo "extract:解压文件"
+    echo "compress_directory:压缩文件夹"
+    echo "compress_file:压缩文件"
     echo "aa_denied:查询被apparmor阻止的特定文件"
     echo "hisgrep:在历史记录中grep文件"
 
