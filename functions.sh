@@ -377,7 +377,7 @@ open_remote_folder_in_dolphin() {
 }
 
 cursor() {
-    /home/user/path_to_appimage/Cursor.AppImage "$@"
+    ~/cursor/cursor-0.44.11-build-250103fqxdt5u9z-x86_64.AppImage "$@"
 }
 
 extract() {
@@ -448,9 +448,7 @@ compress_directory() {
     zip -r "$zip_filename" "$dir_to_compress"
 
     if [ $? -eq 0 ]; then
-     cursor() {
-    /home/user/path_to_appimage/Cursor.AppImage "$@"
-}   echo "文件夹压缩成功: $zip_filename"
+    	echo "文件夹压缩成功: $zip_filename"
     else
         echo "文件夹压缩失败。"
     fi
