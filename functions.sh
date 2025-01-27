@@ -201,7 +201,7 @@ list_and_view_maps() {
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
 SSH_20="ssy@192.168.122.7"
-SSH_18="ssy@192.168.122.187"
+SSH_18="ssy@192.168.122.110"
 SSH_FE="ssy@192.168.122.140"
 
 # 连接到远程服务器的函数
@@ -272,6 +272,64 @@ sync_to_remote() {
     fi
 }
 
+sync_to_host() {
+    local src_file="$1"
+    if [ -z "$src_file" ]; then
+        echo "\033[31m请提供要传输的虚拟机文件路径。\033[0m"
+        return 1
+    fi
+
+    echo "请选择目标虚拟机:"
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
+        case $target_ssh in
+            "SSH_TX")
+                target_ssh_value="$SSH_TX"
+                break
+                ;;
+            "SSH_24")
+                target_ssh_value="$SSH_24"
+                break
+                ;;
+            "SSH_20")
+                target_ssh_value="$SSH_20"
+                break
+                ;; 
+            "SSH_18")
+                target_ssh_value="$SSH_18"
+                break
+                ;;
+            "SSH_FE")
+                target_ssh_value="$SSH_FE"
+                break
+                ;;
+            *)
+                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+                continue
+                ;;
+        esac
+    done
+
+    if [ -z "$target_ssh_value" ]; then
+        echo "\033[31m未选择目标虚拟机，传输取消。\033[0m"
+        return 1
+    fi
+
+    local host_user=$(whoami) # 获取主机用户名，假设主机用户名与当前终端的用户名一致
+    local host_target_dir="." # 设置主机端默认的保存目录
+
+    echo "\033[32m正在将文件从虚拟机传输到主机：$host_target_dir\033[0m"
+
+    # 使用 scp 将文件从虚拟机传输到主机
+    scp "$target_ssh_value:$src_file" "$host_target_dir/"
+
+    if [ $? -eq 0 ]; then
+        echo "\033[32m文件传输成功，已保存至：$host_target_dir\033[0m"
+    else
+        echo "\033[31m文件传输失败。\033[0m"
+    fi
+}
+
+
 open_remote_folder_in_dolphin() {
     # 如果未传入远程目录，默认使用根目录 "/"
     local remote_dir="${1:-/}"
@@ -318,7 +376,9 @@ open_remote_folder_in_dolphin() {
     fi
 }
 
-
+cursor() {
+    /home/user/path_to_appimage/Cursor.AppImage "$@"
+}
 
 extract() {
     local file="$1"
@@ -388,7 +448,9 @@ compress_directory() {
     zip -r "$zip_filename" "$dir_to_compress"
 
     if [ $? -eq 0 ]; then
-        echo "文件夹压缩成功: $zip_filename"
+     cursor() {
+    /home/user/path_to_appimage/Cursor.AppImage "$@"
+}   echo "文件夹压缩成功: $zip_filename"
     else
         echo "文件夹压缩失败。"
     fi
@@ -424,10 +486,12 @@ list_defined_functions() {
     echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
     echo "ssh_connect:链接到远程服务器,TX链接到腾讯服务器，24连接到虚拟机"
     echo "sync_to_remote:上传文件至远程服务器"
+    echo "sync_to_host:传输虚拟机的文件给主机"
     echo "open_remote_folder_in_dolphin:使用dolphin打开远程文件夹"
     echo "extract:解压文件"
     echo "compress_directory:压缩文件夹"
     echo "compress_file:压缩文件"
+    echo "cursor:打开cursor"
     echo "aa_denied:查询被apparmor阻止的特定文件"
     echo "hisgrep:在历史记录中grep文件"
 

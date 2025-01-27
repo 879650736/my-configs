@@ -147,3 +147,9 @@ alias apt_removed='grep "remove" /var/log/apt/history.log | tail -n 10'
 
 #new_home
 alias new_home='cd /home/new_home'
+
+#systemctl
+alias reload_systemctl='sudo systemctl daemon-reload'
+
+#docker-compose
+alias docker-compose="docker compose"
