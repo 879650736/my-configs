@@ -377,7 +377,17 @@ open_remote_folder_in_dolphin() {
 }
 
 cursor() {
-    ~/cursor/cursor-0.44.11-build-250103fqxdt5u9z-x86_64.AppImage "$@"
+    # 设置Wayland兼容模式（自动检测显示服务器）
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+        export LIBGL_ALWAYS_SOFTWARE=1
+        export QT_QPA_PLATFORM=wayland
+    fi
+
+    # 启动Cursor并后台运行
+    nohup /opt/apps/cursor/cursor-0.44.11-build-250103fqxdt5u9z-x86_64.AppImage >/dev/null 2>&1 &
+
+    # 分离进程
+    disown
 }
 
 extract() {
