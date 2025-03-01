@@ -464,6 +464,16 @@ compress_directory() {
     fi
 }
 
+# 递归查找文件名包含关键字的文件
+# 用法: search_file <关键字>
+search_file() {
+    if [[ $# -eq 0 ]]; then
+        echo "请指定要搜索的关键字"
+        echo "用法: search_file <关键字>"
+        return 1
+    fi
+    find . -iname "*$1*" 2>/dev/null
+}
 
 
 aa_denied() {
@@ -500,6 +510,7 @@ list_defined_functions() {
     echo "compress_directory:压缩文件夹"
     echo "compress_file:压缩文件"
     echo "cursor:打开cursor"
+    echo "search_file:递归查找文件名包含关键字的文件"
     echo "aa_denied:查询被apparmor阻止的特定文件"
     echo "hisgrep:在历史记录中grep文件"
 
