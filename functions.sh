@@ -203,6 +203,8 @@ SSH_24="ssy@192.168.122.171"
 SSH_20="ssy@192.168.122.7"
 SSH_18="ssy@192.168.122.110"
 SSH_FE="ssy@192.168.122.140"
+SSH_AARCH64="ssy@192.168.122.193"
+
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -225,6 +227,10 @@ ssh_connect_fe() {
     ssh -X "$SSH_FE"
 }
 
+ssh_connect_fe() {
+    ssh -X "$SSH_AARCH64"
+}
+
 sync_to_remote() {
     local src_file="$1"
     if [ -z "$src_file" ]; then
@@ -233,7 +239,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE" "SSH_AARCH64"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -255,8 +261,12 @@ sync_to_remote() {
                 target_ssh_value="$SSH_FE"
                 break
                 ;;
+            "SSH_AARCH64")
+                target_ssh_value="$SSH_AARCH64"
+                break
+                ;;
             *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+                echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
                 continue
                 ;;
         esac
@@ -280,7 +290,7 @@ sync_to_host() {
     fi
 
     echo "请选择目标虚拟机:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE" "SSH_AARCH64"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -302,8 +312,12 @@ sync_to_host() {
                 target_ssh_value="$SSH_FE"
                 break
                 ;;
+            "SSH_AARCH64")
+                target_ssh_value="$SSH_AARCH64"
+                break
+                ;;
             *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+                echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
                 continue
                 ;;
         esac
@@ -335,7 +349,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_18" "SSH_FE" "SSH_AARCH64"; do
         case $target_ssh in
             "SSH_TX")
                 target_ssh_value="$SSH_TX"
@@ -355,6 +369,10 @@ open_remote_folder_in_dolphin() {
                 ;;
             "SSH_FE")
                 target_ssh_value="$SSH_FE"
+                break
+                ;;
+            "SSH_AARCH64")
+                target_ssh_value="$SSH_AARCH64"
                 break
                 ;;
             *)
