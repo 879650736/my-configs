@@ -227,7 +227,7 @@ ssh_connect_fe() {
     ssh -X "$SSH_FE"
 }
 
-ssh_connect_fe() {
+ssh_connect_aarch() {
     ssh -X "$SSH_AARCH64"
 }
 
