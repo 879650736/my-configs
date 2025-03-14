@@ -6,3 +6,4 @@
 
 [[ -f $HOME/.env_vars ]] && source $HOME/.env_vars
 
+export PATH=/home/ssy/x-tools/arm-unknown-linux-gnueabi/bin:$PATH
