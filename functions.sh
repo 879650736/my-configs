@@ -201,7 +201,7 @@ list_and_view_maps() {
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.171"
 SSH_20="ssy@192.168.122.7"
-SSH_ARCH="ssy@192.168.122.47"
+SSH_ARCH="ssy@192.168.122.46"
 SSH_AARCH64="ssy@192.168.122.193"
 
 
