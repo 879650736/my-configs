@@ -1,29 +1,29 @@
 # 添加到 ~/.bashrc 的测试脚本
 git_clone_and_remove() {
-  local repo_url="https://github.com/octocat/Hello-World.git"
-  local clone_dir="test_repo"
+    local repo_url="https://github.com/octocat/Hello-World.git"
+    local clone_dir="test_repo"
 
-  # 克隆仓库
-  echo "Cloning repository from $repo_url..."
-  git clone $repo_url $clone_dir
+    # 克隆仓库
+    echo "Cloning repository from $repo_url..."
+    git clone $repo_url $clone_dir
 
-  # 检查克隆是否成功
-  if [ -d "$clone_dir" ]; then
-    echo "Repository cloned successfully to $clone_dir."
+    # 检查克隆是否成功
+    if [ -d "$clone_dir" ]; then
+        echo "Repository cloned successfully to $clone_dir."
 
-    # 移除克隆的目录
-    echo "Removing cloned directory $clone_dir..."
-    rm -rf $clone_dir
+        # 移除克隆的目录
+        echo "Removing cloned directory $clone_dir..."
+        rm -rf $clone_dir
 
-    # 检查目录是否成功移除
-    if [ ! -d "$clone_dir" ]; then
-      echo "Cloned directory removed successfully."
+        # 检查目录是否成功移除
+        if [ ! -d "$clone_dir" ]; then
+            echo "Cloned directory removed successfully."
+        else
+            echo "Failed to remove cloned directory."
+        fi
     else
-      echo "Failed to remove cloned directory."
+        echo "Failed to clone repository."
     fi
-  else
-    echo "Failed to clone repository."
-  fi
 }
 
 cleanup_apt_locks() {
@@ -36,9 +36,9 @@ cleanup_apt_locks() {
     done
 
     echo "移除锁文件..."
-   sudo rm /var/lib/dpkg/lock-frontend
-   sudo rm /var/lib/dpkg/lock
-   sudo rm /var/cache/apt/archives/lock
+    sudo rm /var/lib/dpkg/lock-frontend
+    sudo rm /var/lib/dpkg/lock
+    sudo rm /var/cache/apt/archives/lock
     echo "重新配置 dpkg..."
     sudo dpkg --configure -a
 
@@ -63,7 +63,6 @@ rd_set_proxy() {
 
     echo "HTTP 和 HTTPS 代理已设置为http://192.168.43.1:12345"
 }
-
 
 # 取消代理的函数
 unset_proxy() {
@@ -97,7 +96,7 @@ check_and_kill_port() {
 }
 
 add_to_path() {
-    echo 'export PATH=$PATH:'"$PWD" >> ~/.bashrc
+    echo 'export PATH=$PATH:'"$PWD" >>~/.bashrc
     source ~/.bashrc
     echo "Current directory ($PWD) added to PATH."
 }
@@ -112,7 +111,6 @@ mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-
 update_git_remote_pwd() {
     REPO_DIR=$(pwd)
 
@@ -120,16 +118,28 @@ update_git_remote_pwd() {
     COMMIT_MESSAGE="Update compiler files at $DATE"
 
     # 切换到目标目录
-    cd "$REPO_DIR" || { echo "Failed to change directory to $REPO_DIR"; return 1; }
+    cd "$REPO_DIR" || {
+        echo "Failed to change directory to $REPO_DIR"
+        return 1
+    }
 
     # 添加更改到 Git
-    git add * || { echo "Failed to add changes to git"; return 1; }
+    git add * || {
+        echo "Failed to add changes to git"
+        return 1
+    }
 
     # 提交更改
-    git commit -m "$COMMIT_MESSAGE" || { echo "Failed to commit changes"; return 1; }
+    git commit -m "$COMMIT_MESSAGE" || {
+        echo "Failed to commit changes"
+        return 1
+    }
 
     # 推送更改到远程仓库
-    git push -u origin master || { echo "Failed to push changes to remote repository"; return 1; }
+    git push -u origin master || {
+        echo "Failed to push changes to remote repository"
+        return 1
+    }
 
     echo "Update completed successfully."
 }
@@ -139,13 +149,13 @@ link_to_desktop() {
     local desktop_file=~/"Desktop/$dir_name.desktop"
 
     # 创建 .desktop 文件
-    echo "[Desktop Entry]" > "$desktop_file"
-    echo "Name=$dir_name" >> "$desktop_file"
-    echo "Comment=Shortcut to the $dir_name directory" >> "$desktop_file"
-    echo "Exec=dolphin $PWD" >> "$desktop_file"
-    echo "Icon=folder" >> "$desktop_file"
-    echo "Terminal=false" >> "$desktop_file"
-    echo "Type=Application" >> "$desktop_file"
+    echo "[Desktop Entry]" >"$desktop_file"
+    echo "Name=$dir_name" >>"$desktop_file"
+    echo "Comment=Shortcut to the $dir_name directory" >>"$desktop_file"
+    echo "Exec=dolphin $PWD" >>"$desktop_file"
+    echo "Icon=folder" >>"$desktop_file"
+    echo "Terminal=false" >>"$desktop_file"
+    echo "Type=Application" >>"$desktop_file"
 
     chmod +x "$desktop_file"
 
@@ -156,12 +166,12 @@ link_to_desktop() {
 function list_and_view_maps() {
     # 列出所有进程及其 PID
     echo "Listing all processes:"
-    ps -eo pid,comm --sort=pid  # 列出 PID 和命令，按 PID 排序
-    echo  # 添加空行以便更清晰
+    ps -eo pid,comm --sort=pid # 列出 PID 和命令，按 PID 排序
+    echo                       # 添加空行以便更清晰
 
     # 提示用户输入 PID
     echo -n "Enter the PID you want to view maps for: "
-    read pid  # 等待用户输入 PID
+    read pid # 等待用户输入 PID
 
     # 检查进程是否存在
     if ! kill -0 "$pid" 2>/dev/null; then
@@ -178,12 +188,12 @@ function list_and_view_maps() {
 list_and_view_maps() {
     # 列出所有进程及其 PID
     echo "Listing all processes:"
-    ps -eo pid,comm --sort=pid  # 列出 PID 和命令，按 PID 排序
-    echo  # 添加空行以便更清晰
+    ps -eo pid,comm --sort=pid # 列出 PID 和命令，按 PID 排序
+    echo                       # 添加空行以便更清晰
 
     # 提示用户输入 PID
     echo -n "Enter the PID you want to view maps for: "
-    read pid  # 等待用户输入 PID
+    read pid # 等待用户输入 PID
 
     # 检查进程是否存在
     if ! kill -0 "$pid" 2>/dev/null; then
@@ -196,14 +206,12 @@ list_and_view_maps() {
     cat "/proc/$pid/maps"
 }
 
-
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
-SSH_24="ssy@192.168.122.171"
+SSH_24="ssy@192.168.122.207"
 SSH_20="ssy@192.168.122.7"
 SSH_ARCH="ssy@192.168.122.46"
 SSH_AARCH64="ssy@192.168.122.193"
-
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -217,7 +225,6 @@ ssh_connect_24() {
 ssh_connect_20() {
     ssh -X "$SSH_20"
 }
-
 
 ssh_connect_arch() {
     ssh -X "$SSH_ARCH"
@@ -235,32 +242,32 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20"  "SSH_ARCH" "SSH_AARCH64"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
         case $target_ssh in
-            "SSH_TX")
-                target_ssh_value="$SSH_TX"
-                break
-                ;;
-            "SSH_24")
-                target_ssh_value="$SSH_24"
-                break
-                ;;
-            "SSH_20")
-                target_ssh_value="$SSH_20"
-                break
-                ;; 
-            "SSH_ARCH")
-                target_ssh_value="$SSH_ARCH"
-                break
-                ;;
-            "SSH_AARCH64")
-                target_ssh_value="$SSH_AARCH64"
-                break
-                ;;
-            *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-65。\033[0m"
-                continue
-                ;;
+        "SSH_TX")
+            target_ssh_value="$SSH_TX"
+            break
+            ;;
+        "SSH_24")
+            target_ssh_value="$SSH_24"
+            break
+            ;;
+        "SSH_20")
+            target_ssh_value="$SSH_20"
+            break
+            ;;
+        "SSH_ARCH")
+            target_ssh_value="$SSH_ARCH"
+            break
+            ;;
+        "SSH_AARCH64")
+            target_ssh_value="$SSH_AARCH64"
+            break
+            ;;
+        *)
+            echo "\033[31m无效的选项，请选择对应的数字（1-65。\033[0m"
+            continue
+            ;;
         esac
     done
 
@@ -282,36 +289,36 @@ sync_to_host() {
     fi
 
     echo "请选择目标虚拟机:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20"  "SSH_ARCH" "SSH_AARCH64"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
         case $target_ssh in
-            "SSH_TX")
-                target_ssh_value="$SSH_TX"
-                break
-                ;;
-            "SSH_24")
-                target_ssh_value="$SSH_24"
-                break
-                ;;
-            "SSH_20")
-                target_ssh_value="$SSH_20"
-                break
-                ;; 
-            "SSH_18")
-                target_ssh_value="$SSH_18"
-                break
-                ;;
-            "SSH_ARCH")
-                target_ssh_value="$SSH_ARCH"
-                break
-                ;;
-            "SSH_AARCH64")
-                target_ssh_value="$SSH_AARCH64"
-                break
-                ;;
-            *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
-                continue
-                ;;
+        "SSH_TX")
+            target_ssh_value="$SSH_TX"
+            break
+            ;;
+        "SSH_24")
+            target_ssh_value="$SSH_24"
+            break
+            ;;
+        "SSH_20")
+            target_ssh_value="$SSH_20"
+            break
+            ;;
+        "SSH_18")
+            target_ssh_value="$SSH_18"
+            break
+            ;;
+        "SSH_ARCH")
+            target_ssh_value="$SSH_ARCH"
+            break
+            ;;
+        "SSH_AARCH64")
+            target_ssh_value="$SSH_AARCH64"
+            break
+            ;;
+        *)
+            echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+            continue
+            ;;
         esac
     done
 
@@ -335,7 +342,6 @@ sync_to_host() {
     fi
 }
 
-
 open_remote_folder_in_dolphin() {
     # 如果未传入远程目录，默认使用根目录 "/"
     local remote_dir="${1:-/}"
@@ -343,37 +349,37 @@ open_remote_folder_in_dolphin() {
     echo "请选择目标服务器:"
     select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
         case $target_ssh in
-            "SSH_TX")
-                target_ssh_value="$SSH_TX"
-                break
-                ;;
-            "SSH_24")
-                target_ssh_value="$SSH_24"
-                break
-                ;;
-            "SSH_20")
-                target_ssh_value="$SSH_20"
-                break
-                ;;
-            "SSH_ARCH")
-                target_ssh_value="$SSH_ARCH"
-                break
-                ;;
-            "SSH_AARCH64")
-                target_ssh_value="$SSH_AARCH64"
-                break
-                ;;
-            *)
-                echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
-                continue
-                ;;
+        "SSH_TX")
+            target_ssh_value="$SSH_TX"
+            break
+            ;;
+        "SSH_24")
+            target_ssh_value="$SSH_24"
+            break
+            ;;
+        "SSH_20")
+            target_ssh_value="$SSH_20"
+            break
+            ;;
+        "SSH_ARCH")
+            target_ssh_value="$SSH_ARCH"
+            break
+            ;;
+        "SSH_AARCH64")
+            target_ssh_value="$SSH_AARCH64"
+            break
+            ;;
+        *)
+            echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+            continue
+            ;;
         esac
     done
 
     echo "\033[32m正在通过 Dolphin 打开远程文件夹：$target_ssh_value:$remote_dir\033[0m"
-    
+
     # 使用 Dolphin 打开远程文件夹
-    dolphin "sftp://$target_ssh_value$remote_dir"
+    dolphin "sftp://$target_ssh_value$remote_dir" &
 
     if [ $? -eq 0 ]; then
         echo "\033[32m已成功打开远程文件夹。\033[0m"
@@ -409,15 +415,15 @@ extract() {
     fi
 
     case "$file" in
-        *.tar.gz | *.tgz) tar -xvzf "$file" ;;
-        *.tar.bz2) tar -xvjf "$file" ;;
-        *.tar.xz) tar -xvJf "$file" ;;
-        *.tar) tar -xvf "$file" ;;
-        *.gz) gunzip "$file" ;;
-        *.zip) unzip "$file" ;;
-        *.bz2) bunzip2 "$file" ;;
-        *.xz) unxz "$file" ;;
-        *) echo "不支持的文件格式：$file" ;;
+    *.tar.gz | *.tgz) tar -xvzf "$file" ;;
+    *.tar.bz2) tar -xvjf "$file" ;;
+    *.tar.xz) tar -xvJf "$file" ;;
+    *.tar) tar -xvf "$file" ;;
+    *.gz) gunzip "$file" ;;
+    *.zip) unzip "$file" ;;
+    *.bz2) bunzip2 "$file" ;;
+    *.xz) unxz "$file" ;;
+    *) echo "不支持的文件格式：$file" ;;
     esac
 }
 
@@ -445,7 +451,6 @@ compress_file() {
     fi
 }
 
-
 compress_directory() {
     local dir_to_compress="$1"
     if [ -z "$dir_to_compress" ]; then
@@ -464,7 +469,7 @@ compress_directory() {
     zip -r "$zip_filename" "$dir_to_compress"
 
     if [ $? -eq 0 ]; then
-    	echo "文件夹压缩成功: $zip_filename"
+        echo "文件夹压缩成功: $zip_filename"
     else
         echo "文件夹压缩失败。"
     fi
@@ -481,17 +486,13 @@ search_file() {
     find . -iname "*$1*" 2>/dev/null
 }
 
-
 aa_denied() {
-  sudo dmesg | grep 'apparmor.*denied' | grep "$1"
+    sudo dmesg | grep 'apparmor.*denied' | grep "$1"
 }
 
 hisgrep() {
-  history | grep "$1"
+    history | grep "$1"
 }
-
-
-
 
 list_defined_functions() {
     echo "以下是已定义的函数："
@@ -521,4 +522,3 @@ list_defined_functions() {
     echo "hisgrep:在历史记录中grep文件"
 
 }
-
