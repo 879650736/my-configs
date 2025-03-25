@@ -6,7 +6,6 @@ git_clone_and_remove() {
     # 克隆仓库
     echo "Cloning repository from $repo_url..."
     git clone $repo_url $clone_dir
-
     # 检查克隆是否成功
     if [ -d "$clone_dir" ]; then
         echo "Repository cloned successfully to $clone_dir."
@@ -208,10 +207,10 @@ list_and_view_maps() {
 
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
-SSH_24="ssy@192.168.122.207"
-SSH_20="ssy@192.168.122.7"
-SSH_ARCH="ssy@192.168.122.46"
-SSH_AARCH64="ssy@192.168.122.193"
+SSH_24="ssy@192.168.122.86"
+SSH_20="ssy@192.168.122.247"
+SSH_ARCH="ssy@192.168.122.16"
+SSH_AARCH64="ssy@192.168.122.61"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
