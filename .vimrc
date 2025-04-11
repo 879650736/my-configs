@@ -196,6 +196,3 @@ autocmd BufReadPost,FileReadPost * normal zM
 
 " 支持系统剪贴板
 set clipboard=unnamedplus
-
-" 将交换文件集中到 ~/.vim/swap
-set directory=~/.vim/swap//  
