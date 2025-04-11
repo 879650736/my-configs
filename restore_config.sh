@@ -45,55 +45,55 @@ fi
 
 #旧文件进行备份
 if [ -f "$VIMRC_FILE" ]; then
-    mv "$VIMRC_FILE" "$VIMRC_FILE.bak" && echo "Backup .vimrc to .vimrc.bak" || echo "Failed to backup .vimrc"
+    cp -f "$VIMRC_FILE" "$VIMRC_FILE.bak" && echo "Backup .vimrc to .vimrc.bak" || echo "Failed to backup .vimrc"
 fi
 if [ -f "$BASHRC_FILE" ]; then
-    mv "$BASHRC_FILE" "$BASHRC_FILE.bak" && echo "Backup .bashrc to .bashrc.bak" || echo "Failed to backup .bashrc"
+    cp -f "$BASHRC_FILE" "$BASHRC_FILE.bak" && echo "Backup .bashrc to .bashrc.bak" || echo "Failed to backup .bashrc"
 fi
 if [ -f "$ZSHRC_FILE" ]; then
-    mv "$ZSHRC_FILE" "$ZSHRC_FILE.bak" && echo "Backup .zshrc to .zshrc.bak" || echo "Failed to backup .zshrc"
+    cp -f "$ZSHRC_FILE" "$ZSHRC_FILE.bak" && echo "Backup .zshrc to .zshrc.bak" || echo "Failed to backup .zshrc"
 fi
 if [ -f "$ALIASES_FILE" ]; then
-    mv "$ALIASES_FILE" "$ALIASES_FILE.bak" && echo "Backup .aliases to .aliases.bak" || echo "Failed to backup .aliases"
+    cp -f "$ALIASES_FILE" "$ALIASES_FILE.bak" && echo "Backup .aliases to .aliases.bak" || echo "Failed to backup .aliases"
 fi
 if [ -f "$FUNCTIONS_FILE" ]; then
-    mv "$FUNCTIONS_FILE" "$FUNCTIONS_FILE.bak" && echo "Backup functions.sh to functions.sh.bak" || echo "Failed to backup functions.sh"
+    cp -f "$FUNCTIONS_FILE" "$FUNCTIONS_FILE.bak" && echo "Backup functions.sh to functions.sh.bak" || echo "Failed to backup functions.sh"
 fi
 if [ -f "$ZSH_SETTINGS_FILE" ]; then
-    mv "$ZSH_SETTINGS_FILE" "$ZSH_SETTINGS_FILE.bak" && echo "Backup settings.zsh to settings.zsh.bak" || echo "Failed to backup settings.zsh"
+    cp -f "$ZSH_SETTINGS_FILE" "$ZSH_SETTINGS_FILE.bak" && echo "Backup settings.zsh to settings.zsh.bak" || echo "Failed to backup settings.zsh"
 fi
 if [ -f "$BASH_SETTINGS_FILE" ]; then
-    mv "$BASH_SETTINGS_FILE" "$BASH_SETTINGS_FILE.bak" && echo "Backup setting.sh to setting.sh.bak" || echo "Failed to backup setting.sh"
+    cp -f "$BASH_SETTINGS_FILE" "$BASH_SETTINGS_FILE.bak" && echo "Backup setting.sh to setting.sh.bak" || echo "Failed to backup setting.sh"
 fi
 if [ -f "$ENV_VARS_FILE" ]; then
-    mv "$ENV_VARS_FILE" "$ENV_VARS_FILE.bak" && echo "Backup env_vars.sh to env_vars.sh.bak" || echo "Failed to backup env_vars.sh"
+    cp -f "$ENV_VARS_FILE" "$ENV_VARS_FILE.bak" && echo "Backup env_vars.sh to env_vars.sh.bak" || echo "Failed to backup env_vars.sh"
 fi
 if [ -f "$TMUX_FILE" ]; then
-    mv "$TMUX_FILE" "$TMUX_FILE.bak" && echo "Backup .tmux.conf to .tmux.conf.bak" || echo "Failed to backup .tmux.conf"
+    cp -f "$TMUX_FILE" "$TMUX_FILE.bak" && echo "Backup .tmux.conf to .tmux.conf.bak" || echo "Failed to backup .tmux.conf"
 fi
 if [ -f "$CURLRC_FILE" ]; then
-    mv "$CURLRC_FILE" "$CURLRC_FILE.bak" && echo "Backup .curlrc to .curlrc.bak" || echo "Failed to backup .curlrc"
+    cp -f "$CURLRC_FILE" "$CURLRC_FILE.bak" && echo "Backup .curlrc to .curlrc.bak" || echo "Failed to backup .curlrc"
 fi
 if [ -f "$GDBINIT_FILE" ]; then
-    mv "$GDBINIT_FILE" "$GDBINIT_FILE.bak" && echo "Backup .gdbinit to .gdbinit.bak" || echo "Failed to backup .gdbinit"
+    cp -f "$GDBINIT_FILE" "$GDBINIT_FILE.bak" && echo "Backup .gdbinit to .gdbinit.bak" || echo "Failed to backup .gdbinit"
 fi
 if [ -f "$WGETRC_FILE" ]; then
-    mv "$WGETRC_FILE" "$WGETRC_FILE.bak" && echo "Backup .wgetrc to .wgetrc.bak" || echo "Failed to backup .wgetrc"
+    cp -f "$WGETRC_FILE" "$WGETRC_FILE.bak" && echo "Backup .wgetrc to .wgetrc.bak" || echo "Failed to backup .wgetrc"
 fi
 if [ -f "$INPUTRC_FILE" ]; then
-    mv "$INPUTRC_FILE" "$INPUTRC_FILE.bak" && echo "Backup .inputrc to .inputrc.bak" || echo "Failed to backup .inputrc"
+    cp -f "$INPUTRC_FILE" "$INPUTRC_FILE.bak" && echo "Backup .inputrc to .inputrc.bak" || echo "Failed to backup .inputrc"
 fi
 if [ -f "$GITCONFIG_FILE" ]; then
-    mv "$GITCONFIG_FILE" "$GITCONFIG_FILE.bak" && echo "Backup .gitconfig to .gitconfig.bak" || echo "Failed to backup .gitconfig"
+    cp -f "$GITCONFIG_FILE" "$GITCONFIG_FILE.bak" && echo "Backup .gitconfig to .gitconfig.bak" || echo "Failed to backup .gitconfig"
 fi
 if [ -f "$GITIGNORE_FILE" ]; then
-    mv "$GITIGNORE_FILE" "$GITIGNORE_FILE.bak" && echo "Backup .gitignore to .gitignore.bak" || echo "Failed to backup .gitignore"
+    cp -f "$GITIGNORE_FILE" "$GITIGNORE_FILE.bak" && echo "Backup .gitignore to .gitignore.bak" || echo "Failed to backup .gitignore"
 fi
 if [ -f "$EXPORTS_FILE" ]; then
-    mv "$EXPORTS_FILE" "$EXPORTS_FILE.bak" && echo "Backup .exports to .exports.bak" || echo "Failed to backup .exports"
+    cp -f "$EXPORTS_FILE" "$EXPORTS_FILE.bak" && echo "Backup .exports to .exports.bak" || echo "Failed to backup .exports"
 fi
 if [ -f "$AGNOSTER_THEME_FILE" ]; then
-    mv "$AGNOSTER_THEME_FILE" "$AGNOSTER_THEME_FILE.bak" && echo "Backup agnoster.zsh-theme to agnoster.zsh-theme.bak" || echo "Failed to backup agnoster.zsh-theme"
+    cp -f "$AGNOSTER_THEME_FILE" "$AGNOSTER_THEME_FILE.bak" && echo "Backup agnoster.zsh-theme to agnoster.zsh-theme.bak" || echo "Failed to backup agnoster.zsh-theme"
 fi
 
 # 复制配置文件回正确位置
