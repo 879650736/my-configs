@@ -30,16 +30,6 @@ alias -- -="cd -"
 
 alias g="git"
 
-alias path='echo $path | tr ":" "\n" | awk '\''{
-    colors[1]="\033[31m"; # red
-    colors[2]="\033[32m"; # green
-    colors[3]="\033[33m"; # yellow
-    colors[4]="\033[34m"; # blue
-    colors[5]="\033[35m"; # magenta
-    colors[6]="\033[36m"; # cyan
-    print colors[(nr % 6) + 1] $0 "\033[0m"
-}'\'
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

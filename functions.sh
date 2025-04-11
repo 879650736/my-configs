@@ -100,6 +100,19 @@ add_to_path() {
     echo "Current directory ($PWD) added to PATH."
 }
 
+path() {
+    echo $PATH | tr ":" "\n" | awk '{
+        colors[1]="\033[31m"; # red
+        colors[2]="\033[32m"; # green
+        colors[3]="\033[33m"; # yellow
+        colors[4]="\033[34m"; # blue
+        colors[5]="\033[35m"; # magenta
+        colors[6]="\033[36m"; # cyan
+        print colors[(NR % 6) + 1] $0 "\033[0m"
+    }'
+}
+
+
 # Function to run the update-configs.sh script
 update_configs() {
     ~/my-configs/update_configs.sh
@@ -503,6 +516,7 @@ list_defined_functions() {
     echo "unset_proxy: 取消 HTTP 和 HTTPS 代理。"
     echo "check_and_kill_port: 检查指定端口的占用情况，并根据用户输入终止相应的进程。"
     echo "add_to_path:将pwd的目录放入环境变量里"
+    echo "path:显示环境变量"
     echo "update_configs:在github里更新my_configs"
     echo "mkcd:建立并进入文件夹"
     echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
