@@ -11,6 +11,13 @@ ZSH_SETTINGS_FILE=~/.zsh/settings.zsh
 BASH_SETTINGS_FILE=~/.shell/setting.sh
 ENV_VARS_FILE=~/.env_vars
 TMUX_FILE=~/.tmux.conf
+CURLRC_FILE=~/.curlrc
+GDBINIT_FILE=~/.gdbinit
+WGETRC_FILE=~/.wgetrc
+INPUTRC_FILE=~/.inputrc
+GITCONFIG_FILE=~/.gitconfig
+GITIGNORE_FILE=~/.gitignore
+EXPORTS_FILE=~/.exports
 AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
@@ -48,6 +55,13 @@ cp -f setting.sh "$BASH_SETTINGS_FILE" && echo "Restored setting.sh" || echo "Fa
 cp -f .env_vars "$ENV_VARS_FILE" && echo "Restored env_vars.sh" || echo "Failed to restore .env_vars"
 cp -f .tmux.conf "$TMUX_FILE" && echo "Restored env_vars.sh" || echo "Failed to restore .tmux.conf"
 cp -f agnoster.zsh-theme "$AGNOSTER_THEME_FILE" && echo "Restored agnoster.zsh-theme" || echo "Failed to restore agnoster.zsh-theme"
+cp -f .curlrc "$CURLRC_FILE" && echo "Restored .curlrc" || echo "Failed to restore .curlrc"
+cp -f .gdbinit "$GDBINIT_FILE" && echo "Restored .gdbinit" || echo "Failed to restore .gdbinit"
+cp -f .wgetrc "$WGETRC_FILE" && echo "Restored .wgetrc" || echo "Failed to restore .wgetrc"
+cp -f .inputrc "$INPUTRC_FILE" && echo "Restored .inputrc" || echo "Failed to restore .inputrc"
+cp -f .gitconfig "$GITCONFIG_FILE" && echo "Restored .gitconfig" || echo "Failed to restore .gitconfig"
+cp -f .gitignore "$GITIGNORE_FILE" && echo "Restored .gitignore" || echo "Failed to restore .gitignore"
+cp -f .exports "$EXPORTS_FILE" && echo "Restored .exports" || echo "Failed to restore .exports"
 
 # 记录完成时间
 DATE=$(date +"%Y-%m-%d %H:%M:%S")

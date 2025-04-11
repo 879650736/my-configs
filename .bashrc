@@ -6,4 +6,4 @@
 
 [[ -f $HOME/.env_vars ]] && source $HOME/.env_vars
 
-
+[[ -f $HOME/.exports ]] && source $HOME/.exports

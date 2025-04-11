@@ -65,6 +65,25 @@ xterm*|rxvt*)
     ;;
 esac
 
+# 不区分大小写的文件名扩展
+shopt -s nocaseglob;
+
+
+# 自动纠正 cd 命令的拼写错误
+shopt -s cdspell;
+
+# 启用 Bash 4 特性
+for option in autocd globstar; do
+    shopt -s "$option" 2> /dev/null;
+done;
+
+# git 命令自动补全
+if type _git &> /dev/null; then
+    complete -o default -o nospace -F _git g;
+fi;
+
+# SSH 主机名自动补全
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -76,3 +95,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+eval "$(direnv hook bash)" 
