@@ -32,13 +32,6 @@ set encoding=utf-8 nobomb
 set binary
 set noeol
 
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-
-" Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
-
 " Respect modeline in files
 set modeline
 set modelines=4
@@ -56,9 +49,6 @@ set tabstop=2
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
-
-" Highlight searches
-set hlsearch
 
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
@@ -207,3 +197,5 @@ autocmd BufReadPost,FileReadPost * normal zM
 " 支持系统剪贴板
 set clipboard=unnamedplus
 
+" 将交换文件集中到 ~/.vim/swap
+set directory=~/.vim/swap//  
