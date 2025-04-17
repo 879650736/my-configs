@@ -391,7 +391,7 @@ open_remote_folder_in_dolphin() {
     echo "\033[32m正在通过 Dolphin 打开远程文件夹：$target_ssh_value:$remote_dir\033[0m"
 
     # 使用 Dolphin 打开远程文件夹
-    dolphin "sftp://$target_ssh_value$remote_dir" &
+    nohup dolphin "sftp://$target_ssh_value$remote_dir" >/dev/null 2>&1 &
 
     if [ $? -eq 0 ]; then
         echo "\033[32m已成功打开远程文件夹。\033[0m"
