@@ -18,7 +18,7 @@ INPUTRC_FILE=~/.inputrc
 GITCONFIG_FILE=~/.gitconfig
 GITIGNORE_FILE=~/.gitignore
 EXPORTS_FILE=~/.exports
-AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/agnoster.zsh-theme
+AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/my_agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 COMMIT_MESSAGE="Update configuration files at $DATE"

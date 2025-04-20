@@ -18,7 +18,7 @@ INPUTRC_FILE=~/.inputrc
 GITCONFIG_FILE=~/.gitconfig
 GITIGNORE_FILE=~/.gitignore
 EXPORTS_FILE=~/.exports
-AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/agnoster.zsh-theme
+AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/my_agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -106,7 +106,7 @@ cp -f settings.zsh "$ZSH_SETTINGS_FILE" && echo "Restored settings.zsh" || echo 
 cp -f setting.sh "$BASH_SETTINGS_FILE" && echo "Restored setting.sh" || echo "Failed to restore setting.sh"
 #cp -f .env_vars "$ENV_VARS_FILE" && echo "Restored env_vars.sh" || echo "Failed to restore .env_vars"
 cp -f .tmux.conf "$TMUX_FILE" && echo "Restored .tmux.conf" || echo "Failed to restore .tmux.conf"
-#cp -f agnoster.zsh-theme "$AGNOSTER_THEME_FILE" && echo "Restored agnoster.zsh-theme" || echo "Failed to restore agnoster.zsh-theme"
+#cp -f my_agnoster.zsh-theme "$AGNOSTER_THEME_FILE" && echo "Restored agnoster.zsh-theme" || echo "Failed to restore agnoster.zsh-theme"
 cp -f .curlrc "$CURLRC_FILE" && echo "Restored .curlrc" || echo "Failed to restore .curlrc"
 cp -f .gdbinit "$GDBINIT_FILE" && echo "Restored .gdbinit" || echo "Failed to restore .gdbinit"
 cp -f .wgetrc "$WGETRC_FILE" && echo "Restored .wgetrc" || echo "Failed to restore .wgetrc"

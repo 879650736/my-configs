@@ -8,7 +8,7 @@ ZSH_THEME="agnoster"
 export DEFAULT_USER="$USER"
 
 #更改agnoster主题
-alias vtheme='v ~/.oh-my-zsh/themes/agnoster.zsh-theme'
+alias vtheme='v ~/.oh-my-zsh/themes/my_agnoster.zsh-theme'
 
 # 启用插件
 plugins=(
