@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # 设置主题
-ZSH_THEME="agnoster"
+ZSH_THEME="my_agnoster"
 
 #取消显示DEFAULT_USER
 export DEFAULT_USER="$USER"
