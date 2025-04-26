@@ -108,8 +108,8 @@ alias vdocker='v /etc/apt/sources.list.d/docker.list'
 alias vgit="v ~/.gitconfig"
 
 #更新ubuntu
-alias update='sudo apt update -y'
-alias upgrade='sudo apt upgrade -y'
+alias aptupdate='sudo apt update -y'
+alias aptupgrade='sudo apt upgrade -y'
 
 #打开docker
 alias dockerstart='sudo service docker start'
@@ -140,7 +140,9 @@ alias docker_service='cd /etc/systemd/system/docker.service.d'
 alias cdssh='cd /home/ssy/.ssh'
 
 #修改grep的默认行为
-alias grepf='grep -rni'
+alias grepf='grep -rni --binary-files=without-match'
+alias grepfa='grep -rni'
+
 
 #打开mysql
 alias mysqlstart='sudo systemctl start mysql'
