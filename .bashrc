@@ -7,3 +7,5 @@
 [[ -f $HOME/.env_vars ]] && source $HOME/.env_vars
 
 [[ -f $HOME/.exports ]] && source $HOME/.exports
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
