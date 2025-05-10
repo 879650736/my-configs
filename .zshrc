@@ -45,7 +45,3 @@ export LC_ALL=en_US.UTF-8
 
 
 
-
-[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
-
-. "$HOME/.local/bin/env"
