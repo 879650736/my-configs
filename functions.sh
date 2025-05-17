@@ -221,9 +221,9 @@ list_and_view_maps() {
 # 定义变量
 SSH_TX="ubuntu@170.106.189.30"
 SSH_24="ssy@192.168.122.86"
+SSH_22="ssy@192.168.122.78"
 SSH_20="ssy@192.168.122.247"
 SSH_ARCH="ssy@192.168.122.16"
-SSH_AARCH64="ssy@192.168.122.61"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -234,16 +234,16 @@ ssh_connect_24() {
     ssh -X "$SSH_24"
 }
 
+ssh_connect_22() {
+    ssh -X "$SSH_22"
+}
+
 ssh_connect_20() {
     ssh -X "$SSH_20"
 }
 
 ssh_connect_arch() {
     ssh -X "$SSH_ARCH"
-}
-
-ssh_connect_aarch() {
-    ssh -X "$SSH_AARCH64"
 }
 
 sync_to_remote() {
@@ -254,7 +254,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -264,16 +264,16 @@ sync_to_remote() {
             target_ssh_value="$SSH_24"
             break
             ;;
+        "SSH_22")
+            target_ssh_value="$SSH_22"
+            break
+            ;;
         "SSH_20")
             target_ssh_value="$SSH_20"
             break
             ;;
         "SSH_ARCH")
             target_ssh_value="$SSH_ARCH"
-            break
-            ;;
-        "SSH_AARCH64")
-            target_ssh_value="$SSH_AARCH64"
             break
             ;;
         *)
@@ -301,7 +301,7 @@ sync_to_host() {
     fi
 
     echo "请选择目标虚拟机:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -309,6 +309,10 @@ sync_to_host() {
             ;;
         "SSH_24")
             target_ssh_value="$SSH_24"
+            break
+            ;;
+        "SSH_22")
+            target_ssh_value="$SSH_22"
             break
             ;;
         "SSH_20")
@@ -321,10 +325,6 @@ sync_to_host() {
             ;;
         "SSH_ARCH")
             target_ssh_value="$SSH_ARCH"
-            break
-            ;;
-        "SSH_AARCH64")
-            target_ssh_value="$SSH_AARCH64"
             break
             ;;
         *)
@@ -359,7 +359,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_20" "SSH_ARCH" "SSH_AARCH64"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -369,16 +369,16 @@ open_remote_folder_in_dolphin() {
             target_ssh_value="$SSH_24"
             break
             ;;
+        "SSH_22")
+            target_ssh_value="$SSH_22"
+            break
+            ;;
         "SSH_20")
             target_ssh_value="$SSH_20"
             break
             ;;
         "SSH_ARCH")
             target_ssh_value="$SSH_ARCH"
-            break
-            ;;
-        "SSH_AARCH64")
-            target_ssh_value="$SSH_AARCH64"
             break
             ;;
         *)
