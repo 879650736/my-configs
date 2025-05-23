@@ -224,6 +224,7 @@ SSH_24="ssy@192.168.122.86"
 SSH_22="ssy@192.168.122.78"
 SSH_20="ssy@192.168.122.247"
 SSH_ARCH="ssy@192.168.122.16"
+SSH_GXDE="ssy@192.168.122.130"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -245,6 +246,9 @@ ssh_connect_20() {
 ssh_connect_arch() {
     ssh -X "$SSH_ARCH"
 }
+ssh_connect_gxde() {
+    ssh -X "$SSH_GXDE"
+}
 
 sync_to_remote() {
     local src_file="$1"
@@ -254,7 +258,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_GXDE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -276,8 +280,12 @@ sync_to_remote() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_GXDE")
+            target_ssh_value="$SSH_GXDE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-65。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
             continue
             ;;
         esac
@@ -301,7 +309,7 @@ sync_to_host() {
     fi
 
     echo "请选择目标虚拟机:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_GXDE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -327,8 +335,12 @@ sync_to_host() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_GXDE")
+            target_ssh_value="$SSH_GXDE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
             continue
             ;;
         esac
@@ -359,7 +371,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_GXDE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -381,8 +393,12 @@ open_remote_folder_in_dolphin() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_GXDE")
+            target_ssh_value="$SSH_GXDE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-5）。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
             continue
             ;;
         esac
