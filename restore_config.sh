@@ -19,6 +19,7 @@ GITCONFIG_FILE=~/.gitconfig
 GITIGNORE_FILE=~/.gitignore
 EXPORTS_FILE=~/.exports
 AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/my_agnoster.zsh-theme
+CONDARC_FILE=~/.condarc
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -95,6 +96,9 @@ fi
 if [ -f "$AGNOSTER_THEME_FILE" ]; then
     cp -f "$AGNOSTER_THEME_FILE" "$AGNOSTER_THEME_FILE.bak" && echo "Backup agnoster.zsh-theme to agnoster.zsh-theme.bak" || echo "Failed to backup agnoster.zsh-theme"
 fi
+if [ -f "$CONDARC_FILE" ]; then
+    cp -f "$CONDARC_FILE" "$CONDARC_FILE.bak" && echo "Backup .condarc to .condarc.bak" || echo "Failed to backup .condarc"
+fi
 
 # 复制配置文件回正确位置
 cp -f .vimrc "$VIMRC_FILE" && echo "Restored .vimrc"|| echo "Failed to restore .vimrc"
@@ -114,6 +118,7 @@ cp -f .inputrc "$INPUTRC_FILE" && echo "Restored .inputrc" || echo "Failed to re
 cp -f .gitconfig "$GITCONFIG_FILE" && echo "Restored .gitconfig" || echo "Failed to restore .gitconfig"
 cp -f .gitignore "$GITIGNORE_FILE" && echo "Restored .gitignore" || echo "Failed to restore .gitignore"
 cp -f .exports "$EXPORTS_FILE" && echo "Restored .exports" || echo "Failed to restore .exports"
+cp -f .condarc "$CONDARC_FILE" && echo "Restored .condarc" || echo "Failed to restore .condarc"
 
 # 记录完成时间
 DATE=$(date +"%Y-%m-%d %H:%M:%S")

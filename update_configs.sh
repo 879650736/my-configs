@@ -18,6 +18,7 @@ INPUTRC_FILE=~/.inputrc
 GITCONFIG_FILE=~/.gitconfig
 GITIGNORE_FILE=~/.gitignore
 EXPORTS_FILE=~/.exports
+CONDARC_FILE=~/.condarc
 AGNOSTER_THEME_FILE=~/.oh-my-zsh/themes/my_agnoster.zsh-theme
 
 DATE=$(date +"%Y-%m-%d %H:%M:%S")
@@ -44,6 +45,7 @@ cp "$INPUTRC_FILE" . || { echo "Failed to copy directory to .inputrc"; }
 cp "$GITCONFIG_FILE" . || { echo "Failed to copy directory to .gitconfig"; }
 cp "$GITIGNORE_FILE" . || { echo "Failed to copy directory to .gitignore"; }
 cp "$EXPORTS_FILE" . || { echo "Failed to copy directory to .exports"; }
+cp "$CONDARC_FILE" . || { echo "Failed to copy directory to .condarc"; }
 
 # 添加更改到 Git
 git add . || { echo "Failed to add changes to git"; exit 1; }
