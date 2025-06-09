@@ -45,3 +45,10 @@ export LC_ALL=en_US.UTF-8
 
 
 
+
+# fnm
+FNM_PATH="/home/ssy/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/ssy/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
