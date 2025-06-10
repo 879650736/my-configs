@@ -370,8 +370,8 @@ sync_to_host() {
 }
 
 open_remote_folder_in_dolphin() {
-    # 如果未传入远程目录，默认使用根目录 "/"
-    local remote_dir="${1:-/}"
+    # 如果未传入远程目录，默认使用home目录 "/home/"
+    local remote_dir="${1:-/home/}"
 
     echo "请选择目标服务器:"
     select target_ssh in "SSH_TX"  "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
