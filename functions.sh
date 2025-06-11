@@ -1,4 +1,4 @@
-# 添加到 ~/.bashrc 的测试脚本
+# 测试脚本
 git_clone_and_remove() {
     local repo_url="https://github.com/octocat/Hello-World.git"
     local clone_dir="test_repo"
@@ -49,28 +49,6 @@ cleanup_apt_locks() {
     echo "完成！"
 }
 
-set_proxy() {
-    export http_proxy="http://127.0.0.1:7897"
-    export https_proxy="http://127.0.0.1:7897"
-    export all_proxy="socks5://127.0.0.1:7897"
-    echo "HTTP HTTPS SOCKS5 代理已设置为 http://127.0.0.1:7897"
-}
-
-rd_set_proxy() {
-    export http_proxy="http://192.168.43.1:12345"
-    export https_proxy="http://192.168.43.1:12345"
-
-    echo "HTTP 和 HTTPS 代理已设置为http://192.168.43.1:12345"
-}
-
-# 取消代理的函数
-unset_proxy() {
-    unset http_proxy
-    unset https_proxy
-    unset all_proxy
-    echo "HTTP 和 HTTPS SOCKS5 代理已取消"
-}
-
 check_and_kill_port() {
     if [ -z "$1" ]; then
         echo "用法: check_and_kill_port <端口号>"
@@ -94,12 +72,6 @@ check_and_kill_port() {
     fi
 }
 
-add_to_path() {
-    echo 'export PATH=$PATH:'"$PWD" >>~/.bashrc
-    source ~/.bashrc
-    echo "Current directory ($PWD) added to PATH."
-}
-
 path() {
     echo $PATH | tr ":" "\n" | awk '{
         colors[1]="\033[31m"; # red
@@ -112,7 +84,6 @@ path() {
     }'
 }
 
-
 # Function to run the update-configs.sh script
 update_configs() {
     ~/my-configs/update_configs.sh
@@ -121,39 +92,6 @@ update_configs() {
 # 定义 mkcd 函数
 mkcd() {
     mkdir -p "$1" && cd "$1"
-}
-
-update_git_remote_pwd() {
-    REPO_DIR=$(pwd)
-
-    DATE=$(date +"%Y-%m-%d %H:%M:%S")
-    COMMIT_MESSAGE="Update compiler files at $DATE"
-
-    # 切换到目标目录
-    cd "$REPO_DIR" || {
-        echo "Failed to change directory to $REPO_DIR"
-        return 1
-    }
-
-    # 添加更改到 Git
-    git add * || {
-        echo "Failed to add changes to git"
-        return 1
-    }
-
-    # 提交更改
-    git commit -m "$COMMIT_MESSAGE" || {
-        echo "Failed to commit changes"
-        return 1
-    }
-
-    # 推送更改到远程仓库
-    git push -u origin master || {
-        echo "Failed to push changes to remote repository"
-        return 1
-    }
-
-    echo "Update completed successfully."
 }
 
 link_to_desktop() {
@@ -437,53 +375,6 @@ extract() {
     esac
 }
 
-compress_file() {
-    local file_to_compress="$1"
-    if [ -z "$file_to_compress" ]; then
-        echo "请输入要压缩的文件路径。"
-        return 1
-    fi
-
-    if [ ! -f "$file_to_compress" ]; then
-        echo "指定的文件不存在: $file_to_compress"
-        return 1
-    fi
-
-    local zip_filename="${file_to_compress}.zip"
-    echo "正在压缩文件: $file_to_compress 到 $zip_filename"
-
-    zip "$zip_filename" "$file_to_compress"
-
-    if [ $? -eq 0 ]; then
-        echo "文件压缩成功: $zip_filename"
-    else
-        echo "文件压缩失败。"
-    fi
-}
-
-compress_directory() {
-    local dir_to_compress="$1"
-    if [ -z "$dir_to_compress" ]; then
-        echo "请输入要压缩的文件夹路径。"
-        return 1
-    fi
-
-    if [ ! -d "$dir_to_compress" ]; then
-        echo "指定的文件夹不存在: $dir_to_compress"
-        return 1
-    fi
-
-    local zip_filename="${dir_to_compress}.zip"
-    echo "正在压缩文件夹: $dir_to_compress 到 $zip_filename"
-
-    zip -r "$zip_filename" "$dir_to_compress"
-
-    if [ $? -eq 0 ]; then
-        echo "文件夹压缩成功: $zip_filename"
-    else
-        echo "文件夹压缩失败。"
-    fi
-}
 
 # 递归查找文件名包含关键字的文件
 # 用法: search_file <关键字>
@@ -524,8 +415,6 @@ list_defined_functions() {
     echo -e "\033[1;33m== 文件操作 ==\033[0m"
     echo "mkcd: 建立并进入文件夹"
     echo "extract: 解压各种格式的压缩文件"
-    echo "compress_directory: 压缩文件夹为zip格式"
-    echo "compress_file: 压缩单个文件为zip格式"
     echo "search_file: 递归查找文件名包含关键字的文件"
     echo "link_to_desktop: 将当前文件夹的快捷方式放入桌面"
     echo
@@ -543,9 +432,6 @@ list_defined_functions() {
 
     # 网络和远程操作类函数
     echo -e "\033[1;33m== 网络和远程操作 ==\033[0m"
-    echo "set_proxy: 设置HTTP和HTTPS代理为本地代理(127.0.0.1:7897)"
-    echo "rd_set_proxy: 设置HTTP和HTTPS代理为特定地址(192.168.43.1:12345)"
-    echo "unset_proxy: 取消HTTP和HTTPS代理设置"
     echo "ssh_connect_tx: 连接到腾讯云服务器"
     echo "ssh_connect_kk: 连接到指定服务器"
     echo "ssh_connect_24: 连接到ubuntu24虚拟机"
@@ -561,7 +447,6 @@ list_defined_functions() {
     echo -e "\033[1;33m== Git操作 ==\033[0m"
     echo "git_clone_and_remove: 克隆Git仓库到指定目录然后删除该目录(测试用)"
     echo "update_configs: 在github里更新my_configs"
-    echo "update_git_remote_pwd: 更新当前文件夹的远程github仓库"
     echo
 
     # 文本处理类函数
@@ -571,4 +456,3 @@ list_defined_functions() {
     echo
 }
 
-}
