@@ -174,27 +174,6 @@ link_to_desktop() {
     echo "Shortcut $desktop_file created."
 }
 
-# 列出所有进程并查看指定 PID 的 maps 信息
-function list_and_view_maps() {
-    # 列出所有进程及其 PID
-    echo "Listing all processes:"
-    ps -eo pid,comm --sort=pid # 列出 PID 和命令，按 PID 排序
-    echo                       # 添加空行以便更清晰
-
-    # 提示用户输入 PID
-    echo -n "Enter the PID you want to view maps for: "
-    read pid # 等待用户输入 PID
-
-    # 检查进程是否存在
-    if ! kill -0 "$pid" 2>/dev/null; then
-        echo "Process with PID $pid does not exist."
-        return 1
-    fi
-
-    # 输出 maps 信息
-    echo "Memory maps for PID $pid:"
-    cat "/proc/$pid/maps"
-}
 
 # 列出所有进程并查看指定 PID 的 maps 信息
 list_and_view_maps() {
@@ -525,32 +504,71 @@ hisgrep() {
     history | grep "$1"
 }
 
-list_defined_functions() {
-    echo "以下是已定义的函数："
+hp() {
+    if [ -z "$1" ]; then
+        echo "用法: 命令1 | hp \"要高亮显示的正则表达式\""
+        return 1
+    fi
+    sed -E "s/($1)/\o033[1;31m\1\o033[0m/g"
+}
 
-    # 列出函数名称及其描述
-    echo "git_clone_and_remove: 克隆一个 Git 仓库到指定目录，然后删除该目录。"
-    echo "cleanup_apt_locks: 查找并终止卡住的 apt 和 dpkg 进程，移除锁文件，重新配置 dpkg，并清理部分安装的包。"
-    echo "set_proxy: 设置 HTTP 和 HTTPS 代理。"
-    echo "unset_proxy: 取消 HTTP 和 HTTPS 代理。"
-    echo "check_and_kill_port: 检查指定端口的占用情况，并根据用户输入终止相应的进程。"
-    echo "add_to_path:将pwd的目录放入环境变量里"
-    echo "path:显示环境变量"
-    echo "update_configs:在github里更新my_configs"
-    echo "mkcd:建立并进入文件夹"
-    echo "update_git_remote_pwd:更新当前文件夹的远程github目录"
-    echo "link_to_desktop:将当前文件夹的快捷方式放入桌面"
-    echo "list_and_view_maps:列出所有进程并查看指定 PID 的 maps 信息"
-    echo "ssh_connect:链接到远程服务器,TX链接到腾讯服务器，24连接到虚拟机"
-    echo "sync_to_remote:上传文件至远程服务器"
-    echo "sync_to_host:传输虚拟机的文件给主机"
-    echo "open_remote_folder_in_dolphin:使用dolphin打开远程文件夹"
-    echo "extract:解压文件"
-    echo "compress_directory:压缩文件夹"
-    echo "compress_file:压缩文件"
-    echo "cursor:打开cursor"
-    echo "search_file:递归查找文件名包含关键字的文件"
-    echo "aa_denied:查询被apparmor阻止的特定文件"
-    echo "hisgrep:在历史记录中grep文件"
+# 使用示例：
+# ls -l | hp "README"
+# cat /etc/passwd | hp "root"
+
+list_defined_functions() {
+    echo -e "\033[1;36m以下是已定义的函数：\033[0m"
+    echo
+
+    # 文件操作类函数
+    echo -e "\033[1;33m== 文件操作 ==\033[0m"
+    echo "mkcd: 建立并进入文件夹"
+    echo "extract: 解压各种格式的压缩文件"
+    echo "compress_directory: 压缩文件夹为zip格式"
+    echo "compress_file: 压缩单个文件为zip格式"
+    echo "search_file: 递归查找文件名包含关键字的文件"
+    echo "link_to_desktop: 将当前文件夹的快捷方式放入桌面"
+    echo
+
+    # 系统管理类函数
+    echo -e "\033[1;33m== 系统管理 ==\033[0m"
+    echo "cleanup_apt_locks: 查找并终止卡住的apt和dpkg进程，移除锁文件"
+    echo "check_and_kill_port: 检查指定端口的占用情况并终止相应进程"
+    echo "add_to_path: 将当前目录添加到环境变量PATH中"
+    echo "path: 彩色显示环境变量PATH的内容"
+    echo "list_and_view_maps: 列出所有进程并查看指定PID的内存映射信息"
+    echo "aa_denied: 查询被AppArmor阻止的特定文件"
+    echo "cursor: 打开Cursor编辑器"
+    echo
+
+    # 网络和远程操作类函数
+    echo -e "\033[1;33m== 网络和远程操作 ==\033[0m"
+    echo "set_proxy: 设置HTTP和HTTPS代理为本地代理(127.0.0.1:7897)"
+    echo "rd_set_proxy: 设置HTTP和HTTPS代理为特定地址(192.168.43.1:12345)"
+    echo "unset_proxy: 取消HTTP和HTTPS代理设置"
+    echo "ssh_connect_tx: 连接到腾讯云服务器"
+    echo "ssh_connect_kk: 连接到指定服务器"
+    echo "ssh_connect_24: 连接到ubuntu24虚拟机"
+    echo "ssh_connect_22: 连接到ubuntu22虚拟机"
+    echo "ssh_connect_20: 连接到ubuntu20虚拟机"
+    echo "ssh_connect_arch: 连接到Arch Linux虚拟机"
+    echo "sync_to_remote: 上传文件至远程服务器"
+    echo "sync_to_host: 从虚拟机传输文件至主机"
+    echo "open_remote_folder_in_dolphin: 使用dolphin打开远程文件夹"
+    echo
+
+    # Git相关函数
+    echo -e "\033[1;33m== Git操作 ==\033[0m"
+    echo "git_clone_and_remove: 克隆Git仓库到指定目录然后删除该目录(测试用)"
+    echo "update_configs: 在github里更新my_configs"
+    echo "update_git_remote_pwd: 更新当前文件夹的远程github仓库"
+    echo
+
+    # 文本处理类函数
+    echo -e "\033[1;33m== 文本处理 ==\033[0m"
+    echo "hp: 高亮显示管道中的匹配文本"
+    echo "hisgrep: 在命令历史记录中搜索指定关键字"
+    echo
+}
 
 }

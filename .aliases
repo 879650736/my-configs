@@ -171,8 +171,5 @@ alias reload_systemctl='sudo systemctl daemon-reload'
 #docker-compose
 alias docker-compose="docker compose"
 
-#grep高亮
-alias grep-highlight="grep --color=always"
-
 #clipboard
 alias clipboard="xclip -selection clipboard"
