@@ -1,4 +1,0 @@
-○ spice-vdagentd.service - Agent daemon for Spice guests
-     Loaded: loaded (]8;;file://ssy-wujie15pro/usr/lib/systemd/system/spice-vdagentd.service/usr/lib/systemd/system/spice-vdagentd.service]8;;; indirect; preset: [0;1;32menabled[0m)
-     Active: inactive (dead)
-TriggeredBy: ○ spice-vdagentd.socket
