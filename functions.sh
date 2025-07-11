@@ -143,7 +143,9 @@ SSH_KK="root@110.42.34.182"
 SSH_24="ssy@192.168.122.86"
 SSH_22="ssy@192.168.122.78"
 SSH_20="ssy@192.168.122.247"
-SSH_ARCH="ssy@192.168.122.16"
+SSH_FE="ssy@192.168.122.18"
+SSH_SUSE="ssy@192.168.122.185"
+SSH_ARCH="ssy@192.168.122.186"
 
 # 连接到远程服务器的函数
 ssh_connect_tx() {
@@ -170,6 +172,14 @@ ssh_connect_arch() {
     ssh -X "$SSH_ARCH"
 }
 
+ssh_connect_suse() {
+    ssh -X "$SSH_SUSE"
+}
+
+ssh_connect_fe() {
+    ssh -X "$SSH_FE"
+}
+
 sync_to_remote() {
     local src_file="$1"
     if [ -z "$src_file" ]; then
@@ -178,7 +188,7 @@ sync_to_remote() {
     fi
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX" "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX" "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_FE" "SSH_SUSE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -204,8 +214,16 @@ sync_to_remote() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_FE")
+            target_ssh_value="$SSH_FE"
+            break
+            ;;
+        "SSH_SUSE")
+            target_ssh_value="$SSH_SUSE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-8）。\033[0m"
             continue
             ;;
         esac
@@ -229,7 +247,7 @@ sync_to_host() {
     fi
 
     echo "请选择目标虚拟机:"
-    select target_ssh in "SSH_TX" "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX" "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_FE" "SSH_SUSE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -259,8 +277,16 @@ sync_to_host() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_FE")
+            target_ssh_value="$SSH_FE"
+            break
+            ;;
+        "SSH_SUSE")
+            target_ssh_value="$SSH_SUSE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-8）。\033[0m"
             continue
             ;;
         esac
@@ -291,7 +317,7 @@ open_remote_folder_in_dolphin() {
     local remote_dir="${1:-/home/}"
 
     echo "请选择目标服务器:"
-    select target_ssh in "SSH_TX"  "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH"; do
+    select target_ssh in "SSH_TX"  "SSH_KK" "SSH_24" "SSH_22" "SSH_20" "SSH_ARCH" "SSH_FE" "SSH_SUSE"; do
         case $target_ssh in
         "SSH_TX")
             target_ssh_value="$SSH_TX"
@@ -317,8 +343,16 @@ open_remote_folder_in_dolphin() {
             target_ssh_value="$SSH_ARCH"
             break
             ;;
+        "SSH_FE")
+            target_ssh_value="$SSH_FE"
+            break
+            ;;
+        "SSH_SUSE")
+            target_ssh_value="$SSH_SUSE"
+            break
+            ;;
         *)
-            echo "\033[31m无效的选项，请选择对应的数字（1-6）。\033[0m"
+            echo "\033[31m无效的选项，请选择对应的数字（1-8）。\033[0m"
             continue
             ;;
         esac

@@ -173,3 +173,6 @@ alias docker-compose="docker compose"
 
 #clipboard
 alias clipboard="xclip -selection clipboard"
+
+#kill -9
+alias k9="kill -9"
